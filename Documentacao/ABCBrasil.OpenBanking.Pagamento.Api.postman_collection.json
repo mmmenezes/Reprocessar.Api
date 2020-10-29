@@ -1,0 +1,60 @@
+{
+	"info": {
+		"_postman_id": "c7292bdc-d2c7-43d7-9603-ef72c5856c24",
+		"name": "ABCBrasil.OpenBanking.Pagamento.Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CIP",
+			"item": [
+				{
+					"name": "Consulta Boleto CIP",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{ABC_KeyValue}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "{{ABC_KeyID}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "__ABC_ANTI_CSRF_LOGIN__",
+								"value": "{{login}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{protocol}}://{{host}}/api/v1/pagamentos/cip/45/24691827300000069000001112502108300284080233",
+							"protocol": "{{protocol}}",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"pagamentos",
+								"cip",
+								"45",
+								"24691827300000069000001112502108300284080233"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

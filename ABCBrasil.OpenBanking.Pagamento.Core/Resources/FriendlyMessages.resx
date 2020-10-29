@@ -1,0 +1,330 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ControlerErrorClientIDInvalid" xml:space="preserve">
+    <value>ID do cliente inválido.</value>
+  </data>
+  <data name="ErrorValidaCodigoPagamento" xml:space="preserve">
+    <value>Código de barras ou linha digitável inválido.</value>
+  </data>
+  <data name="ErrorValidaCodigoPagamentoEmpty" xml:space="preserve">
+    <value>Código de barras ou linha digitável deve ser informado.</value>
+  </data>
+  <data name="ErrorValidaCodigoPagamentoMax47" xml:space="preserve">
+    <value>O Código de Pagamento deve ter no máximo 47 caracteres</value>
+  </data>
+  <data name="ErrorValidEmailInvalid" xml:space="preserve">
+    <value>Email inválido</value>
+  </data>
+  <data name="ErrorValidIdEmpty" xml:space="preserve">
+    <value>Id não informado</value>
+  </data>
+  <data name="ErrorValidIdInvalid" xml:space="preserve">
+    <value>Id informado é inválido</value>
+  </data>
+  <data name="ErrorValidName10" xml:space="preserve">
+    <value>O nome deve ter no mínimo 10 caracteres</value>
+  </data>
+  <data name="ErrorValidNameEmpty" xml:space="preserve">
+    <value>Nome não informado</value>
+  </data>
+  <data name="ErrorValidParameter" xml:space="preserve">
+    <value>O parâmetro {0} não é válido.</value>
+  </data>
+  <data name="ErrorValidPassword5" xml:space="preserve">
+    <value>Senha deve ter no mínimo 5 caracteres</value>
+  </data>
+  <data name="ErrorValidPasswordEmpty" xml:space="preserve">
+    <value>Senha não informada</value>
+  </data>
+  <data name="ErroServicoAbrirCorePagamento" xml:space="preserve">
+    <value>Falha ao abrir lote de Pagamento para o centro de processamento</value>
+  </data>
+  <data name="ErroServicoCalcularPagamento" xml:space="preserve">
+    <value>Falha ao calcular pagamento</value>
+  </data>
+  <data name="ErroServicoEnviarParaCorePagamento" xml:space="preserve">
+    <value>Falha ao enviar o Pagamento para o centro de processamento</value>
+  </data>
+  <data name="ErroServicoFecharCorePagamento" xml:space="preserve">
+    <value>Falha ao fechar lote de Pagamento para o centro de processamento</value>
+  </data>
+  <data name="ErroServicoIncluirPagamento" xml:space="preserve">
+    <value>Falha ao registrar o Pagamento</value>
+  </data>
+  <data name="ErroServicoTituloJaRegistrado" xml:space="preserve">
+    <value>Título já registrado na base</value>
+  </data>
+  <data name="ErroValidaAgencia" xml:space="preserve">
+    <value>Agencia não informada</value>
+  </data>
+  <data name="ErroValidaCodigoCliente" xml:space="preserve">
+    <value>Código do cliente não informado</value>
+  </data>
+  <data name="ErroValidaCodigoPagamento" xml:space="preserve">
+    <value>Código do pagamento não informado</value>
+  </data>
+  <data name="ErroValidaConta" xml:space="preserve">
+    <value>Conta não informada</value>
+  </data>
+  <data name="ErroValidaDataPagamento" xml:space="preserve">
+    <value>Data pagamento não informada</value>
+  </data>
+  <data name="ErroValidaIdPagamento" xml:space="preserve">
+    <value>Identificação do pagamento não informado</value>
+  </data>
+  <data name="ErroValidaUrlNotificacao" xml:space="preserve">
+    <value>Url de notificação não informada</value>
+  </data>
+  <data name="ErroValidaValorPagamento" xml:space="preserve">
+    <value>Valor do pagamento não informado</value>
+  </data>
+  <data name="ErroServicoIncluirRegistroEvento" xml:space="preserve">
+    <value>Falha ao Incluir Registro de Evento</value>
+  </data>
+  <data name="GeneralFail" xml:space="preserve">
+    <value>Ocorreu uma falha na sua solicitação. Por favor tente novamente.</value>
+  </data>
+  <data name="InvalidCpf" xml:space="preserve">
+    <value>Cpf inválido</value>
+  </data>
+  <data name="RequestParameter" xml:space="preserve">
+    <value>Favor informar o parâmetro {0}.</value>
+  </data>
+  <data name="ServiceErrorBoletoNotFound" xml:space="preserve">
+    <value>Boleto não localizado na CIP.</value>
+  </data>
+  <data name="ServiceErrorClientNotFound" xml:space="preserve">
+    <value>Cliente não localizado</value>
+  </data>
+  <data name="ServiceErrorDeleteClients" xml:space="preserve">
+    <value>Falha ao excluir Cliente [ID]</value>
+  </data>
+  <data name="ServiceErrorExternalApi" xml:space="preserve">
+    <value>Ocorreu uma falha na consulta na Api {0}</value>
+  </data>
+  <data name="ServiceErrorFindClient" xml:space="preserve">
+    <value>Falha ao localizar dados do Cliente [ID]</value>
+  </data>
+  <data name="ServiceErrorFindClients" xml:space="preserve">
+    <value>Falha ao localizar Clientes</value>
+  </data>
+  <data name="ServiceErrorObterBoleto" xml:space="preserve">
+    <value>Falha ao obter boleto.</value>
+  </data>
+  <data name="ServiceErrorObterSituacaoBoleto" xml:space="preserve">
+    <value>Falha ao localizar Boleto.</value>
+  </data>
+  <data name="ServiceErrorPostClient" xml:space="preserve">
+    <value>Falha ao gravar os dados do Cliente</value>
+  </data>
+  <data name="ServiceErrorTituloJaRegistrado" xml:space="preserve">
+    <value>Título já registrado na base</value>
+  </data>
+  <data name="ServiceErrorUpdateClients" xml:space="preserve">
+    <value>Falha ao atualizar Cliente</value>
+  </data>
+  <data name="ErroServicoContaCliente" xml:space="preserve">
+    <value>Conta informada não pertence ao cliente</value>
+  </data>
+  <data name="ErroValidaValorTriCon" xml:space="preserve">
+    <value>Não é permitido valor de tributo ou concessionária divergente do código de barras</value>
+  </data>
+  <data name="ErroServicoExtrairDadosCip" xml:space="preserve">
+    <value>Falha ao extrair dados do título</value>
+  </data>
+  <data name="ErrorValidaCodigoPagamentoMin44" xml:space="preserve">
+    <value>O Código de Pagamento deve ter no mínimo 44 caracteres</value>
+  </data>
+  <data name="ErrorValidTricon" xml:space="preserve">
+    <value>Código Tricon não é permitido na consulta</value>
+  </data>
+  <data name="ErrorValidaCodigoClienteUsuario" xml:space="preserve">
+    <value>Código do cliente inválido</value>
+  </data>
+  <data name="ErroValidaDataPagamentoInferior" xml:space="preserve">
+    <value>Data de pagamento deve ser igual ou superior a data do dia</value>
+  </data>
+  <data name="InfoServicoForaHorario" xml:space="preserve">
+    <value>Fora do horário permitido para o pagamento, horário inicio: {0} e horário fim {1}</value>
+  </data>
+  <data name="InfoServicoProximoDiaUtil" xml:space="preserve">
+    <value>Falha ao obter próximo dia útil</value>
+  </data>
+  <data name="ErroServicoDataExcecao" xml:space="preserve">
+    <value>Falha ao obter data de exceção</value>
+  </data>
+  <data name="ErroServicoDiaUtil" xml:space="preserve">
+    <value>Falha ao validar dia útil</value>
+  </data>
+  <data name="ErroServicoHorarioTransacao" xml:space="preserve">
+    <value>Falha ao obter horários da transação</value>
+  </data>
+  <data name="ErroValidaValorZeroPagamento" xml:space="preserve">
+    <value>Informar um valor para pagamento maior que 0</value>
+  </data>
+  <data name="ErroServicoAplicaValidacoesTitulo" xml:space="preserve">
+    <value>Ocorreu um erro ao aplicar as validações do titulo</value>
+  </data>
+  <data name="InfoServicoTituloExcedeDataLimite" xml:space="preserve">
+    <value>Título excedeu a data limite para pagamento</value>
+  </data>
+  <data name="InfoServicoTituloExcedeQtdPagtos" xml:space="preserve">
+    <value>Título execedeu o limite de pagamentos parciais</value>
+  </data>
+  <data name="InfoServicoTituloInapto" xml:space="preserve">
+    <value>Título inapto para pagamento</value>
+  </data>
+  <data name="ErroServicoTituloValorDivergente" xml:space="preserve">
+    <value>Título não permite valor divergente.</value>
+  </data>
+  <data name="ErroServicoInaptoNConsistido" xml:space="preserve">
+    <value>Título inapto para pagamento ou não consistido.</value>
+  </data>
+  <data name="ErroServicoTpAutcRecbtVlrDivgte" xml:space="preserve">
+    <value>Erro ao checar TpAutcRecbtVlrDivgte.</value>
+  </data>
+  <data name="ErroServicoTempoLimite" xml:space="preserve">
+    <value>Excedeu o tempo limite da operação, tente novamente mais tarde.</value>
+  </data>
+  <data name="ErroServicoPagamentoNaoEncontrado" xml:space="preserve">
+    <value>Pagamento não encontrado.</value>
+  </data>
+  <data name="ErroValidaIdentificadorPagamento" xml:space="preserve">
+    <value>Identificador de Pagamento não informado.</value>
+  </data>
+  <data name="ErroValidaProtocolo" xml:space="preserve">
+    <value>Protocolo não informado.</value>
+  </data>
+  <data name="ErroServicoConsultarPagamento" xml:space="preserve">
+    <value>Falha ao consultar Situação do Pagamento</value>
+  </data>
+  <data name="ErroValidaProtocoloInvalido" xml:space="preserve">
+    <value>Protoloco inválido</value>
+  </data>
+  <data name="ServicoInfoIdPagtoExiste" xml:space="preserve">
+    <value>Código de identificação do pagamento '{0}' já utilizado em outro protocolo, favor iniciar um novo processo de pagamento.</value>
+  </data>
+  <data name="ServicoInfoPagamentoSucesso" xml:space="preserve">
+    <value>Pagamento enviado para processamento.</value>
+  </data>
+  <data name="ServiceErrorCallbackCoreAtualizarSituacao" xml:space="preserve">
+    <value>Falha ao atualizar situação pagamento.</value>
+  </data>
+</root>

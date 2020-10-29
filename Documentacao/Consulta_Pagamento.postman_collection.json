@@ -1,0 +1,84 @@
+{
+	"info": {
+		"_postman_id": "0d195672-d024-4b64-864d-5c520d2113ac",
+		"name": "Pagamento",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Consulta Situação Pagamento por Identificador",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "ABC_KeyID",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "174BABE4-8BA5-4FF1-A38F-CEB5F8CDFCC4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{PROTOCOL}}://{{HOST}}/api/v1/pagamentos/ConsultaSituacaoIdentificador/ID_PAGTO",
+					"protocol": "{{PROTOCOL}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"pagamentos",
+						"ConsultaSituacaoIdentificador",
+						"ID_PAGTO"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta Situação Pagamento por Protocolo",
+			"request": {
+				"auth": {
+					"type": "apikey",
+					"apikey": [
+						{
+							"key": "key",
+							"value": "ABC_KeyID",
+							"type": "string"
+						},
+						{
+							"key": "value",
+							"value": "174BABE4-8BA5-4FF1-A38F-CEB5F8CDFCC4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{PROTOCOL}}://{{HOST}}/api/v1/pagamentos/ConsultaSituacaoProtocolo/123456",
+					"protocol": "{{PROTOCOL}}",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"pagamentos",
+						"ConsultaSituacaoProtocolo",
+						"123456"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

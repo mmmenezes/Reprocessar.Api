@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "0079cf5f-8e7d-4659-947e-2993fb70076c",
+		"name": "Core - Lote",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Criar Lote",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ApiKey",
+						"value": "{{ApiKey_Core_Pagto}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Correlation-ID",
+						"value": "d59ce736-5e4d-4b8f-abb6-1233fbe51224",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"callback\": {\r\n    \"url\": \"http://webhookinbox.com/view/ccccc/\",\r\n    \"apiKeyName\": \"Lote/Criar7\",\r\n    \"apiKeyValue\": \"Lote/Criar7\"\r\n  },\r\n  \"canal\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST_BOL_LOTE}}/ABCBrasil.Core.Pagamento.API/api/v1/Pagamento/Lote/Criar",
+					"protocol": "http",
+					"host": [
+						"{{HOST_BOL_LOTE}}"
+					],
+					"path": [
+						"ABCBrasil.Core.Pagamento.API",
+						"api",
+						"v1",
+						"Pagamento",
+						"Lote",
+						"Criar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Core - Lote - Adicionar",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Successful POST request\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([201,202]);",
+							"});",
+							"var schema = {",
+							"  \"items\": {",
+							"    \"type\": \"boolean\"",
+							"  }",
+							"};",
+							"",
+							"var data1 = [true, false];",
+							"var data2 = [true, 123];",
+							"",
+							"pm.test('Schema is valid', function() {",
+							"  pm.expect(tv4.validate(data1, schema)).to.be.true;",
+							"  pm.expect(tv4.validate(data2, schema)).to.be.true;",
+							"});"
+						],
+						"id": "b2c86cd0-d427-4beb-bdee-595986982a41"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "ApiKey",
+						"value": "{{ApiKey_Core_Pagto}}",
+						"type": "text"
+					},
+					{
+						"key": "X-Correlation-ID",
+						"value": "d59ce736-5e4d-4b8f-abb6-1233fbe51224",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"protocolo\": \"55e2babd-cc93-4e4f-bacf-c2eb8dc99323\",\r\n  \"pagamentos\": [\r\n    {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000001\",\r\n      \"codigoBarras\": \"464661313212313213213132151\",\r\n      \"valor\": 20,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 15\r\n    },\r\n    {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000002\",\r\n      \"codigoBarras\": \"264661313212313213213132132\",\r\n      \"valor\": 40,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 25\r\n    },\r\n     {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000003\",\r\n      \"codigoBarras\": \"264661313212313213213132153\",\r\n      \"valor\": 50,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 45\r\n    },\r\n    {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000001\",\r\n      \"codigoBarras\": \"264661313212313213213132151\",\r\n      \"valor\": 20,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 15\r\n    },\r\n    {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000002\",\r\n      \"codigoBarras\": \"464661313212313213213132152\",\r\n      \"valor\": 40,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 25\r\n    },\r\n     {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000003\",\r\n      \"codigoBarras\": \"464661313212313213213132143\",\r\n      \"valor\": 50,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 45\r\n    },\r\n    {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000001\",\r\n      \"codigoBarras\": \"464661313212313213213132141\",\r\n      \"valor\": 20,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 15\r\n    },\r\n    {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000002\",\r\n      \"codigoBarras\": \"464661313212313213213132142\",\r\n      \"valor\": 40,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 25\r\n    },\r\n     {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000003\",\r\n      \"codigoBarras\": \"444661313212313213213132133\",\r\n      \"valor\": 50,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 45\r\n    },\r\n    {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000001\",\r\n      \"codigoBarras\": \"464661313212313213213132131\",\r\n      \"valor\": 20,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 15\r\n    },\r\n    {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000002\",\r\n      \"codigoBarras\": \"464661313212313213213132132\",\r\n      \"valor\": 40,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 25\r\n    },\r\n     {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000003\",\r\n      \"codigoBarras\": \"464661313212313213213132133\",\r\n      \"valor\": 50,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 45\r\n    }\r\n    ,\r\n     {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000003\",\r\n      \"codigoBarras\": \"464661343212313213213132133\",\r\n      \"valor\": 50,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 45\r\n    },\r\n     {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000003\",\r\n      \"codigoBarras\": \"464661513212313213213132133\",\r\n      \"valor\": 50,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 45\r\n    }\r\n    ,\r\n     {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000003\",\r\n      \"codigoBarras\": \"464661513212313213219132133\",\r\n      \"valor\": 50,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 45\r\n    }\r\n    ,\r\n     {\r\n      \"coligada\": \"246\",\r\n      \"agencia\": \"00019\",\r\n      \"conta\": \"0000000003\",\r\n      \"codigoBarras\": \"464661513212313213213192133\",\r\n      \"valor\": 50,\r\n      \"numeroDocumento\": \"34799599038546\",\r\n      \"identificador\":\"abc\",\r\n      \"crc\": 45\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST_BOL_LOTE}}/ABCBrasil.Core.Pagamento.API/api/v1/Pagamento/Lote/Adicionar",
+					"protocol": "http",
+					"host": [
+						"{{HOST_BOL_LOTE}}"
+					],
+					"path": [
+						"ABCBrasil.Core.Pagamento.API",
+						"api",
+						"v1",
+						"Pagamento",
+						"Lote",
+						"Adicionar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Core - Lote - Fechar",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-Correlation-ID",
+						"value": "d59ce736-5e4d-4b8f-abb6-1233fbe51224",
+						"type": "text"
+					},
+					{
+						"key": "ApiKey",
+						"value": "{{ApiKey_Core_Pagto}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"Protocolo\":\"e55dcb3c-ed23-4ace-bb27-11881b91eba5\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{HOST_BOL_LOTE}}/ABCBrasil.Core.Pagamento.API/api/v1/Pagamento/Lote/Fechar",
+					"protocol": "http",
+					"host": [
+						"{{HOST_BOL_LOTE}}"
+					],
+					"path": [
+						"ABCBrasil.Core.Pagamento.API",
+						"api",
+						"v1",
+						"Pagamento",
+						"Lote",
+						"Fechar"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": []
+}
