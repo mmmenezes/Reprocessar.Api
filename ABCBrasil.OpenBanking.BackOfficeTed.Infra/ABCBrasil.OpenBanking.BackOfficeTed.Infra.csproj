@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Cache\CacheBase.cs" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="ABCBrasil.Core.CacheRedis.Lib" Version="0.0.4" />
+		<PackageReference Include="StackExchange.Redis.Extensions.Core" Version="6.3.5" />
+
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\ABCBrasil.OpenBanking.BackOfficeTed.Core\ABCBrasil.OpenBanking.BackOfficeTed.Core.csproj" />
+	</ItemGroup>
+
+</Project>
