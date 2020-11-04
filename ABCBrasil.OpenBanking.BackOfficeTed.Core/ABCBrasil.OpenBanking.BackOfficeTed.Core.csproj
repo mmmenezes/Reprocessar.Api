@@ -32,4 +32,18 @@
       <LastGenOutput>FriendlyMessages.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\Cache\" />
+    <Folder Include="Interfaces\Common\" />
+    <Folder Include="Interfaces\ExternalApis\" />
+    <Folder Include="Models\AbcBrasilApiIntegracao\Calculo\" />
+    <Folder Include="Models\AbcBrasilApiIntegracao\Calendario\" />
+    <Folder Include="Models\AbcBrasilApiIntegracao\CallbackCore\" />
+    <Folder Include="Models\AbcBrasilApiIntegracao\Cip\" />
+    <Folder Include="Models\AbcBrasilApiIntegracao\CoreComprovante\" />
+    <Folder Include="Models\AbcBrasilApiIntegracao\CorePagamento\" />
+    <Folder Include="Models\AbcBrasilApiIntegracao\Tibco\" />
+    <Folder Include="Models\Repository\" />
+  </ItemGroup>
 </Project>

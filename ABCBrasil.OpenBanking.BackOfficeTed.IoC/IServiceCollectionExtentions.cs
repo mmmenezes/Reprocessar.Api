@@ -5,10 +5,9 @@ using ABCBrasil.LogEventos.Lib.Api.QueueSenders;
 using ABCBrasil.LogEventos.Lib.Infra;
 using ABCBrasil.LogEventos.Lib.Senders.Interfaces;
 using ABCBrasil.LogEventos.Lib.Senders.QueueSenders;
-using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Cache;
-using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Common;
+
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.EventLog;
-using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.ExternalApis;
+
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Repository;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;
@@ -45,23 +44,14 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
             builder.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             builder.AddSingleton<IApiIssuer, ApiIssuer>();
             builder.AddScoped<IClientService, ClientService>();
-            builder.AddScoped<Core.Interfaces.Services.ICipService, Core.Services.CipService>();
-            builder.AddScoped<IPagamentoService, PagamentoService>();
+      
             //builder.AddScoped<IPagamentoValida, PagamentoValida>();
             builder.AddScoped<IAntiCSRFService, AntiCSRFService>();
-            builder.AddScoped<IComprovanteService, ComprovanteService>();
+           
 
-            //#HTTPClient
-            builder.AddHttpClient<IAbcBrasilApiIntegracao, AbcBrasilApiIntegracao>()
-                .AddPolicyHandler(GetPolicyRetry())
-                //.AddPolicyHandler(GetPolicyCircuitBreaker())
-                ;
+        
 
-            builder.AddHttpClient<IAbcBrasilNotificacaoIntegracao, AbcBrasilNotificacaoIntegracao>();
-            builder.AddScoped<ICallbackTibcoService, CallbackTibcoService>();
-
-            builder.AddScoped<IAbcBrasilNotificacaoIntegracaoService, AbcBrasilNotificacaoIntegracaoService>();
-            builder.AddScoped<IAbcBrasilApiIntegracaoService, AbcBrasilApiIntegracaoService>();
+            
 
 
             //Log Eventos
@@ -71,7 +61,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
 
 
             //callback
-            builder.AddScoped<ICallbackCoreService, CallbackCoreService>();
+          
             
 
             return builder;
@@ -81,16 +71,13 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
         {
             //---
             //Cache
-            builder.AddScoped<IClientCache, ClientCache>();
-            builder.AddScoped<ICipCache, CoreCipCache>();
+      
 
             //---
             //Repositories
             builder.AddScoped<IParametrosRepository, ParametrosRepository>();
             builder.AddScoped<IClientRepository, ClientRepository>();
-            builder.AddScoped<IPagamentoRepository, PagamentoRepository>();
-            builder.AddScoped<ICipRepository, CipRepository>();
-            builder.AddScoped<ICallbackCoreRepository, CallbackCoreRepository>();
+   
 
             return builder;
         }
