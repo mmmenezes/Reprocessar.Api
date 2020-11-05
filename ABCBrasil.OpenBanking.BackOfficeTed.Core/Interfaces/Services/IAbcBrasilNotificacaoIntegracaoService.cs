@@ -8,6 +8,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services
     {
         void SetNoticationHandle(INotificationHandler notificationHandler);
         void SetTraceHandle(ITraceHandler traceHandler);
-        void NotificarStatus(Notificacao notificacao, string protocolo);
+        
     }
 }

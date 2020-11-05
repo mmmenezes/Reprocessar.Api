@@ -18,4 +18,10 @@
 	  <ProjectReference Include="..\ABCBrasil.OpenBanking.BackOfficeTed.Core\ABCBrasil.OpenBanking.BackOfficeTed.Core.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Cache\" />
+	  <Folder Include="ExternalApis\" />
+	  <Folder Include="Repository\" />
+	</ItemGroup>
+
 </Project>

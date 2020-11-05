@@ -5,17 +5,11 @@ using ABCBrasil.LogEventos.Lib.Api.QueueSenders;
 using ABCBrasil.LogEventos.Lib.Infra;
 using ABCBrasil.LogEventos.Lib.Senders.Interfaces;
 using ABCBrasil.LogEventos.Lib.Senders.QueueSenders;
-
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.EventLog;
-
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Repository;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;
-using ABCBrasil.OpenBanking.BackOfficeTed.Core.Pagamento;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Services;
-using ABCBrasil.OpenBanking.BackOfficeTed.Infra.Cache;
-using ABCBrasil.OpenBanking.BackOfficeTed.Infra.ExternalApis;
-using ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository;
 using ABCBrasil.SegurancaApi.DSL.Libs.Interfaces;
 using ABCBrasil.SegurancaApi.DSL.Libs.Service;
 using Microsoft.AspNetCore.Http;
@@ -43,14 +37,11 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
         {
             builder.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             builder.AddSingleton<IApiIssuer, ApiIssuer>();
-            builder.AddScoped<IClientService, ClientService>();
+//            builder.AddScoped<IClientService, ClientService>();
       
             //builder.AddScoped<IPagamentoValida, PagamentoValida>();
             builder.AddScoped<IAntiCSRFService, AntiCSRFService>();
            
-
-        
-
             
 
 
@@ -76,7 +67,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
             //---
             //Repositories
             builder.AddScoped<IParametrosRepository, ParametrosRepository>();
-            builder.AddScoped<IClientRepository, ClientRepository>();
    
 
             return builder;

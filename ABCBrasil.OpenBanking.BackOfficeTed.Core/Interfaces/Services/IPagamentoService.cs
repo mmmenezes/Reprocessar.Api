@@ -13,7 +13,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services
 
         Task<SituacaoPagamentoResponse> ObterSituacaoProtocolo(SituacaoPagamentoProtocoloRequest situacaoPagamentoProtocolo);
         Task<SituacaoPagamentoResponse> ObterSituacaoIdentificador(SituacaoPagamentoIdentificadorRequest situacaoPagamentoIdentificador);
-        Task<IncluirPagamentoResponse> Incluir(Models.Pagamento modelPagamento);
-        Task<PagamentoExiste> PagamentoExiste(PagamentoExisteRequest modelExisteRequest);
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Common;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
-using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Common;
+
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
