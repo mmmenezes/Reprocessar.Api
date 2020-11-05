@@ -45,6 +45,5 @@
     <Folder Include="Models\AbcBrasilApiIntegracao\CoreComprovante\" />
     <Folder Include="Models\AbcBrasilApiIntegracao\CorePagamento\" />
     <Folder Include="Models\AbcBrasilApiIntegracao\Tibco\" />
-    <Folder Include="Pagamento\" />
   </ItemGroup>
 </Project>
