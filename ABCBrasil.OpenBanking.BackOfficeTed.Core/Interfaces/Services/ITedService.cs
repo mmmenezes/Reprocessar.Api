@@ -8,6 +8,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services
 {
     public interface ITedService
     {
-        void BuscaTeds(BuscaTedRequest tedRequest);
+        string BuscaTeds(BuscaTedRequest tedRequest);
     }
 }
