@@ -1,7 +1,4 @@
-﻿
-using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Notification;
-using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Tracer;
-using ABCBrasil.LogEventos.Lib.Api.QueueSenders;
+﻿using ABCBrasil.LogEventos.Lib.Api.QueueSenders;
 using ABCBrasil.LogEventos.Lib.Infra;
 using ABCBrasil.LogEventos.Lib.Senders.Interfaces;
 using ABCBrasil.LogEventos.Lib.Senders.QueueSenders;
@@ -28,8 +25,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
         {
             builder
                 .AddServices()
-                .AddRepository()
-                .AddComponents();
+                .AddRepository();
+                //.AddComponents();
 
             return builder;
         }
@@ -42,8 +39,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
             builder.AddScoped<ITedService, TedService>();
             //builder.AddScoped<IPagamentoValida, PagamentoValida>();
             builder.AddScoped<IAntiCSRFService, AntiCSRFService>();
-           
-            
+
+
 
 
             //Log Eventos
@@ -53,8 +50,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
 
 
             //callback
-          
-            
+
+
 
             return builder;
         }
@@ -63,7 +60,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
         {
             //---
             //Cache
-      
+
 
             //---
             //Repositories
@@ -73,51 +70,15 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
             return builder;
         }
 
-        static IServiceCollection AddComponents(this IServiceCollection builder)
-        {
-            builder.AddNotificationHandler();
-            builder.AddTraceHandler();
+        //static IServiceCollection AddComponents(this IServiceCollection builder)
+        //{
+        //    builder.AddNotificationHandler();
+        //    builder.AddTraceHandler();
 
-            return builder;
-        }
+        //    return builder;
+        //}
 
-        private static AsyncRetryPolicy<HttpResponseMessage> GetPolicyRetry()
-        {
-            return Polly.Extensions.Http.HttpPolicyExtensions
-                .HandleTransientHttpError()
-                .OrResult(msg => msg.StatusCode == System.Net.HttpStatusCode.NotFound)
-                .WaitAndRetryAsync(3, retryAttempt => TimeSpan.FromSeconds(2),
-                                     onRetry: (message, retryCount) =>
-                                     {
-                                         string msg = $"Retentativa: --{retryCount} --";
-                                         Serilog.Log.Warning(msg);
-                                         Serilog.Log.Warning(message.Exception.ToString());
-                                         Console.Out.WriteLineAsync(msg);
-                                     });
-        }
-        private static IAsyncPolicy<HttpResponseMessage> GetPolicyCircuitBreaker()
-        {
-            return Polly.Extensions.Http.HttpPolicyExtensions
-                .HandleTransientHttpError()
-                .CircuitBreakerAsync(3, TimeSpan.FromSeconds(20),
-                                     onBreak: (message, time) =>
-                                     {
-                                         string msg = $"CircuitBreaker aberto por: --{time} --";
-                                         Serilog.Log.Warning(msg);
-                                         Console.Out.WriteLineAsync(msg);
-                                     },
-                                     onReset: () =>
-                                     {
-                                         string msg = "Circuito fechado, solicitações fluem normalmente.";
-                                         Serilog.Log.Warning(msg);
-                                         Console.Out.WriteLineAsync(msg);
-                                     },
-                                     onHalfOpen: () =>
-                                     {
-                                         string msg = "Teste do Circuito, uma solicitação será permitida.";
-                                         Serilog.Log.Warning(msg);
-                                         Console.Out.WriteLineAsync(msg);
-                                     });
-        }
+      
+      
     }
 }

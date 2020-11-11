@@ -1,8 +1,8 @@
-﻿using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Common;
-using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Security.CrossSiteRequestForgery;
-using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Tracer;
+﻿
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -43,7 +43,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Filters
         {
             _filterContext = context;
 
-            _traceHandler.CorrelationId = _filterContext?.HttpContext.Request.GetCorrelationIdFromHeader();
+            //_traceHandler.CorrelationId = _filterContext?.HttpContext.Request.GetCorrelationIdFromHeader();
 
             AddTrace(HEADER_INFOS, TraceLevel.Information, Issues.None,
                 informationData: new

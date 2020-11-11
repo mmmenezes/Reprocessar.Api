@@ -1,7 +1,8 @@
-﻿using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Common;
-using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Notification;
-using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Tracer;
+﻿using ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Services;
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -103,12 +104,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
             TraceHandler.AddTrace(new TraceInfo { Code = Issuer.Maker(issue), Message = message, Level = TraceLevel.Error, Exception = ex });
         }
 
-        protected async Task ValidateAsync<T>(T @object, IValidator validator)
-        {
-            //var resultValidation = await validator.ValidateAsync(@object);
-            //if (!resultValidation.IsValid)
-            //    foreach (var item in resultValidation.Errors)
-            //        AddNotification(item.ErrorCode, item.ErrorMessage, NotificationType.Error);
-        }
+             
     }
 }

@@ -13,7 +13,7 @@
             <param name="httpStatusCode">HttpStatusCode</param>
             <returns></returns>
         </member>
-        <member name="M:ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers.ApiController.Response``1(ABCBrasil.IB.Corporate.Core.Dsl.Lib.Common.ApiResult{``0},System.Net.HttpStatusCode)">
+        <member name="M:ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers.ApiController.Response``1(ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions.ApiResult{``0},System.Net.HttpStatusCode)">
             <summary>
             Response:Metodo padrão para o Retorno ao Cliente.
             </summary>
@@ -22,7 +22,7 @@
             <param name="httpStatusCode">HttpStatusCode</param>
             <returns></returns>
         </member>
-        <member name="M:ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers.ApiController.AddNotification(ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer.Issues,System.String,ABCBrasil.IB.Corporate.Core.Dsl.Lib.Notification.NotificationType)">
+        <member name="M:ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers.ApiController.AddNotification(ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer.Issues,System.String,ABCBrasil.OpenBanking.BackOfficeTed.Core.Services.NotificationType)">
             <summary>
             AddNotification: Envia uma Notificação no response do Cliente usando um Issue.
             </summary>
@@ -30,7 +30,7 @@
             <param name="message">String</param>
             <param name="notificationType">NotificationType</param>
         </member>
-        <member name="M:ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers.ApiController.AddNotification(System.String,System.String,ABCBrasil.IB.Corporate.Core.Dsl.Lib.Notification.NotificationType)">
+        <member name="M:ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers.ApiController.AddNotification(System.String,System.String,ABCBrasil.OpenBanking.BackOfficeTed.Core.Services.NotificationType)">
             <summary>
             AddNotification: Envia uma Notificação no response do Cliente.
             </summary>

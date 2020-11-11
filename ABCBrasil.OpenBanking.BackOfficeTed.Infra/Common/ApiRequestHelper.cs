@@ -1,5 +1,4 @@
-﻿using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Common;
-using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
+﻿using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
 
 using Newtonsoft.Json;
 using System;
@@ -31,7 +30,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Common
             var httpConteudo = new StringContent(json, Encoding.UTF8, "application/json");
 
             _httpClient.DefaultRequestHeaders.Clear();
-            _httpClient.DefaultRequestHeaders.Add(Constants.CORRELATION_HEADER_KEY, protocolo);
+            //_httpClient.DefaultRequestHeaders.Add(Constants.CORRELATION_HEADER_KEY, protocolo);
             _httpClient.DefaultRequestHeaders.Add(baseConfig.ApiKeyName, baseConfig.ApiKey);
             return await _httpClient.PostAsync(finalUrl, httpConteudo);
         }
@@ -48,7 +47,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Common
             var httpConteudo = new StringContent(json, Encoding.UTF8, "application/json");
 
             _httpClient.DefaultRequestHeaders.Clear();
-            _httpClient.DefaultRequestHeaders.Add(Constants.CORRELATION_HEADER_KEY, protocolo);
+            //_httpClient.DefaultRequestHeaders.Add(Constants.CORRELATION_HEADER_KEY, protocolo);
             _httpClient.DefaultRequestHeaders.Add(baseConfig.ApiKeyName, baseConfig.ApiKey);
 
             using (var response = await _httpClient.PostAsync(finalUrl, httpConteudo).ConfigureAwait(false))
@@ -73,7 +72,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Common
 
             _httpClient.DefaultRequestHeaders.Clear();
             _httpClient.DefaultRequestHeaders.Add(baseConfig.ApiKeyName, baseConfig.ApiKey);
-            _httpClient.DefaultRequestHeaders.Add(Constants.CORRELATION_HEADER_KEY, protocolo);
+           // _httpClient.DefaultRequestHeaders.Add(Constants.CORRELATION_HEADER_KEY, protocolo);
 
             return await _httpClient.GetAsync(finalUrl).ConfigureAwait(false);
         }
@@ -89,7 +88,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Common
 
             _httpClient.DefaultRequestHeaders.Clear();
             _httpClient.DefaultRequestHeaders.Add(baseConfig.ApiKeyName, baseConfig.ApiKey);
-            _httpClient.DefaultRequestHeaders.Add(Constants.CORRELATION_HEADER_KEY, protocolo);
+           // _httpClient.DefaultRequestHeaders.Add(Constants.CORRELATION_HEADER_KEY, protocolo);
 
             using (var response = await _httpClient.GetAsync(finalUrl).ConfigureAwait(false))
             {

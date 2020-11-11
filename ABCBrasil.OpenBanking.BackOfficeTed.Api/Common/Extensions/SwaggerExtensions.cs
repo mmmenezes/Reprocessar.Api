@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
@@ -77,10 +78,19 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions
                 options.IncludeXmlComments(xmlDocumentPath);
             }
         }
+        public static IConfigurationRoot GetConfiguration()
+        {
+            return new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: false)
+                .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Production"}.json", optional: true, reloadOnChange: false)
+                .AddJsonFile("appsettings.local.json", optional: true, reloadOnChange: false)
+                .Build();
+        }
 
         static void SetSecurity(this SwaggerGenOptions options)
         {
-            var configuration = ABCBrasil.IB.Corporate.Core.Dsl.Lib.Utils.AppConfiguration.GetConfiguration();
+            var configuration = GetConfiguration();
+                //ABCBrasil.IB.Corporate.Core.Dsl.Lib.Utils.AppConfiguration.GetConfiguration();
             var key = configuration["ABCBrasilApiSettings:keyName"];
             var value = configuration["ABCBrasilApiSettings:keyValue"];
 

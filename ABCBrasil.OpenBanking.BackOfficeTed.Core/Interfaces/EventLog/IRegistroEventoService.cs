@@ -1,5 +1,6 @@
-﻿using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Notification;
-using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Tracer;
+﻿
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Services;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
