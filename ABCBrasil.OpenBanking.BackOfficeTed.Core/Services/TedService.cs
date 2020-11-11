@@ -15,10 +15,10 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             _tedRepository = tedRepository;
         }
         readonly ITedRepository _tedRepository;
-        public void BuscaTeds(BuscaTedRequest tedRequest)
+        public string BuscaTeds(BuscaTedRequest tedRequest)
         {
             var teds = _tedRepository.BuscaEInsereTeds(tedRequest);
-            var CSV = teds.ToCsv();
+            return teds.ToCsv();
         }
 
 

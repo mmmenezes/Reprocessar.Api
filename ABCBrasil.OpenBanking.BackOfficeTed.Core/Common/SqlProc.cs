@@ -7,7 +7,7 @@
         public const string ValidaCliente_Proc = "SPR_VALIDAR_USUARIO_SEL";
         public const string BuscaContasCliente_Proc = "SPR_CONTA_CLIENTE_SEL";
         public const string BuscaPagamento_Proc = "SPR_PAGAMENTO_EXISTE_SEL";
-
+        public const string BuscaTedsReprocessar_Proc = "SPR_REPROCESSA_TED_API_SEL";
         public const string FindClientPagination_Proc = "SPR_CLIENT_TEMPLATE_PAG_SEL";
         public const string FindClient_Proc = "SPR_CLIENT_TEMPLATE_SEL";
         public const string FindClientDocument_Proc = "SPR_CLIENT_TEMPLATE_SEL_DOCUMENT";

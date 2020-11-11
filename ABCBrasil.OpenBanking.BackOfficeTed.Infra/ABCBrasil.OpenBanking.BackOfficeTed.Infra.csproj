@@ -21,7 +21,6 @@
 	<ItemGroup>
 	  <Folder Include="Cache\" />
 	  <Folder Include="ExternalApis\" />
-	  <Folder Include="Repository\" />
 	</ItemGroup>
 
 </Project>

@@ -10,6 +10,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Api", "01 - Api", "{C32ADE5F-A0DF-45C7-BEB6-70A22ACDCA5E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Core", "02 - Core", "{493D3548-A085-4BBF-B209-B0CC66D7ECC7}"
+	ProjectSection(SolutionItems) = preProject
+		ABCBrasil.OpenBanking.BackOfficeTed.Api\Program.cs = ABCBrasil.OpenBanking.BackOfficeTed.Api\Program.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Infra", "03 - Infra", "{C211E79A-FC84-4BE1-9F75-FBFDC1C24484}"
 EndProject
