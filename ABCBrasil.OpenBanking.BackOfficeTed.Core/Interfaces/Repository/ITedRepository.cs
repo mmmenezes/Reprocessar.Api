@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Repository
 {
-    public interface ITedRepository
+    public interface IEventoRepository
     {
         Task<List<TedInfo>> BuscaEInsereTeds(BuscaTedRequest request);
     }

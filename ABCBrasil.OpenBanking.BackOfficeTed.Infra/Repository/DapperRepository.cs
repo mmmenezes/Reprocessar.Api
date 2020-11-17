@@ -20,12 +20,12 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
         {
             _connectDataBase = connectDataBase;
         }
-        string ConnectionString
+       public virtual string ConnectionString
         {
             get
             {
                 if (string.IsNullOrEmpty(_connectionString))
-                    _connectionString = _connectDataBase.GetConnectString(Shared.Configuration.ABC_CS_NAME);
+                    _connectionString = _connectDataBase.GetConnectString(Shared.Configuration.ABC_API);
                 return _connectionString;
             }
         }

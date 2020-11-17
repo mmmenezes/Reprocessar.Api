@@ -10,12 +10,11 @@ using System.Threading.Tasks;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
 {
-    public class TedRepository : DapperRepository, ITedRepository
+    public class EventoRepository : DapperRepository, IEventoRepository
     {
-        public TedRepository(IConnectDataBase connectDataBase) : base(connectDataBase)
+        public EventoRepository(IConnectDataBase connectDataBase) : base(connectDataBase)
         {
         }
-
         public async Task<List<TedInfo>> BuscaEInsereTeds(BuscaTedRequest request)
         {
             var param = new { DT_INI = request.DTINI, DT_FIM = request.DTFIM, QTD = request.QTD };

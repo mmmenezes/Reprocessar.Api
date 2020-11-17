@@ -68,7 +68,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
             //---
             //Repositories
             builder.AddScoped<IParametrosRepository, ParametrosRepository>();
-            builder.AddScoped<ITedRepository, TedRepository>();
+            builder.AddScoped<IEventoRepository, EventoRepository>();
 
             return builder;
         }
