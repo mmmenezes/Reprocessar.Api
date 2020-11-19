@@ -1,6 +1,7 @@
-﻿using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Common;
-using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Issuer;
-using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Logging;
+﻿
+using ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;
 using Microsoft.AspNetCore.Http;
 using System;

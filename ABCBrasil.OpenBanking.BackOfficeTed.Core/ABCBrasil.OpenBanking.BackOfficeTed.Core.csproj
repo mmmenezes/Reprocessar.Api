@@ -9,13 +9,13 @@
 	<PackageReference Include="ABCBrasil.LogEventos.Lib" Version="1.0.12" />
 	<PackageReference Include="ABCBrasil.SegurancaApi.DSL.Libs" Version="1.0.1" />
 	<PackageReference Include="ABCBrasil.Core.Common.Lib" Version="0.0.1" />
-    <PackageReference Include="ABCBrasil.IB.Corporate.Core.Dsl.Lib" Version="1.0.3" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Dapper" Version="2.0.35" />
 	  <PackageReference Include="Microsoft.Extensions.Http.Polly" Version="3.1.4" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="8.6.2" />
     <PackageReference Include="FluentValidation.AspNetCore" Version="9.2.0" />
 	<PackageReference Include="Microsoft.Extensions.Http.Polly" Version="3.1.9" />
+	<PackageReference Include="Serilog" Version="2.10.0" />
 	<PackageReference Include="ServiceStack.Text" Version="5.9.2" />
   </ItemGroup>
 

@@ -1,5 +1,4 @@
-﻿using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Common;
-using ABCBrasil.LogEventos.Lib.Queues.Objects.Payloads;
+﻿using ABCBrasil.LogEventos.Lib.Queues.Objects.Payloads;
 using ABCBrasil.LogEventos.Lib.Queues.Objects.Shared;
 using ABCBrasil.LogEventos.Lib.Senders.Interfaces;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.EventLog;
@@ -23,7 +22,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
         }
         public Task IncluirEvento(string payload, bool status, HttpRequest httprequest, string errormessage)
         {
-            return IncluirEvento(httprequest.GetCorrelationIdFromHeader(), payload, status, httprequest.Method, httprequest.Host.Value.ToString() + httprequest.Path.ToString(), errormessage);
+            return IncluirEvento("", payload, status, httprequest.Method, httprequest.Host.Value.ToString() + httprequest.Path.ToString(), errormessage);
         }
         public async Task IncluirEvento(string correlationid, string payload, bool status, string method, string endpoint, string errormessage)
         {

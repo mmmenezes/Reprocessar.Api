@@ -1,5 +1,5 @@
-﻿using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Notification;
-using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Tracer;
+﻿using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;
 using System;
 

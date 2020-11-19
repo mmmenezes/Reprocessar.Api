@@ -1,4 +1,5 @@
-﻿using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Issuer;
+﻿
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer
 {
@@ -15,5 +16,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer
             System = ABCBrasilSystems.OpenBanking;
             Module = new Module { Id = MODULE_NUMBER, Name = MODULE_NAME };
         }
+        
     }
 }

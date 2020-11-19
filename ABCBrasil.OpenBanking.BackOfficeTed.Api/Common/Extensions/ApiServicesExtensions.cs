@@ -27,7 +27,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions
             builder.Configure<CalendarConfig>(configuration.GetSection("CalendarioConfig"));
             builder.Configure<TibcoPagamentoConfig>(configuration.GetSection("TibcoInclusaoPagamentoConfig"));
 
-            builder.AddDependencies();
+            //builder.AddDependencies();
 
             var infos = new ApiInfos { ApiDescription = $"{Resources.ApiInfos.BankName} - {Resources.ApiInfos.ApiName}" };
             builder.SetSwagger(infos);
@@ -43,7 +43,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions
             app.SetSwagger(versionProvider);
             app.UseSerilog();
             app.UseCompression();
-            app.UseMiddleware<ExceptionMiddleware>();
+            //app.UseMiddleware<ExceptionMiddleware>();
             app.UseMiddleware<AntiCSRFMiddleware>();
         }
     }

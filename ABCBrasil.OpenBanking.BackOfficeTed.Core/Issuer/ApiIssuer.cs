@@ -1,4 +1,6 @@
-﻿using ABCBrasil.IB.Corporate.Core.Dsl.Lib.Issuer;
+﻿
+
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer
 {
