@@ -37,7 +37,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
             builder.AddSingleton<IApiIssuer, ApiIssuer>();
             builder.AddScoped<ITedService, TedService>();
             builder.AddScoped<IAntiCSRFService, AntiCSRFService>();
-
+            builder.AddScoped<IIBRepository, IBRepository>();
 
 
 
@@ -46,6 +46,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
             builder.AddScoped<IRegistroEventoService, RegistroEventoService>();
             builder.AddScoped<ISenderLogEventos, QueueSenderLogEventos>();
             builder.AddScoped<IEventQueueSender, EventQueueSender>();
+         
 
 
             //callback
