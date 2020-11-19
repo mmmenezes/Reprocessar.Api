@@ -10,5 +10,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services
     {
         string BuscaTeds(BuscaTedRequest tedRequest);
         bool ProcessaTed(string SelectedCSV);
+
+        
     }
 }

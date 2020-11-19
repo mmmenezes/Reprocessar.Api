@@ -15,11 +15,21 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
         public EventoRepository(IConnectDataBase connectDataBase) : base(connectDataBase)
         {
         }
-        public async Task<List<TedInfo>> BuscaEInsereTeds(BuscaTedRequest request)
+
+        public async Task<bool> AtualizaEnvio(int Cd_Evento_Api)
+        {
+            var param = new { CD_EVENTO_API = Cd_Evento_Api };
+            return await QueryFirstOrDefaultAsync<bool>(SqlProc.InsertTeds_Proc, param, System.Data.CommandType.StoredProcedure);
+        }
+
+        public async Task<List<TedInfo>> BuscaTeds(BuscaTedRequest request)
         {
             var param = new { DT_INI = request.DTINI, DT_FIM = request.DTFIM, QTD = request.QTD };
-            await QueryFirstOrDefaultAsync<object>(SqlProc.InsertTeds_Proc, param, System.Data.CommandType.StoredProcedure);
             return await QueryFirstOrDefaultAsync<List<TedInfo>>(SqlProc.BuscaTedsReprocessar_Proc, param.QTD, System.Data.CommandType.StoredProcedure);
+        }
+        public async Task<bool> InsereTeds(TedInfo ted)
+        { 
+            return    await QueryFirstOrDefaultAsync<bool>(SqlProc.InsertTeds_Proc, ted, System.Data.CommandType.StoredProcedure);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
         readonly IEventoRepository _tedRepository;
         public string BuscaTeds(BuscaTedRequest tedRequest)
         {
-            var teds = _tedRepository.BuscaEInsereTeds(tedRequest);
+            var teds = _tedRepository.BuscaTeds(tedRequest);
             return teds.ToCsv();
         }
 
@@ -30,19 +30,22 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             List<TransferenciaModel> transferencias = new List<TransferenciaModel>();
             foreach (var item in selecionadas)
             {
+                _tedRepository.InsereTeds(item);
+
                 transferencias.Add(JsonSerializer.Deserialize<TransferenciaModel>(item.Dc_Payload_Request));
+
+                //Metodo que vai ao IB2008
+
+                _tedRepository.AtualizaEnvio(item.Cd_Evento_Api);
+
+               
             }
-
-            //Metodo que vai ao IB2008
-
-            //Metodo que atualiza a tabela
-
-            //Metodo cleanup
 
             return false;
 
 
         }
 
+   
     }
 }
