@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using ABCBrasil.OpenBanking.BackOfficeTed.Core.Services;
+using System.Collections.Generic;
 
-namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
+namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Common
 {
     public interface INotificationHandler
     {

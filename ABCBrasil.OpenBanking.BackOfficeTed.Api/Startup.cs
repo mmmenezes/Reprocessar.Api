@@ -13,7 +13,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api
 {
     public class Startup
     {
-        //public static IConfiguration Config { get; set; }
+        public static IConfiguration Config { get; set; }
         public IConfiguration Configuration { get; }
         public Startup(IConfiguration configuration) => Configuration = configuration;
 

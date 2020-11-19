@@ -1,6 +1,6 @@
 ﻿namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Common
 {
-    public class PagamentoConfig
+    public class BackOfficeTedConfig
     {
         public decimal LimiteValorAcima { get; set; }
     }

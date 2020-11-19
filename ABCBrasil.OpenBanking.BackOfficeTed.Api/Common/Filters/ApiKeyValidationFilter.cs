@@ -43,8 +43,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Filters
         {
             _filterContext = context;
 
-            //_traceHandler.CorrelationId = _filterContext?.HttpContext.Request.GetCorrelationIdFromHeader();
-
             AddTrace(HEADER_INFOS, TraceLevel.Information, Issues.None,
                 informationData: new
                 {

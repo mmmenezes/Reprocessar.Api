@@ -23,11 +23,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions
             builder.Configure<RedisConfiguration>(configuration.GetSection("Redis"));
             builder.Configure<AbcBrasilApiSettings>(configuration.GetSection("ABCBrasilApiSettings"));
             builder.Configure<LogEventosSettings>(configuration.GetSection("LogEventos"));
-            builder.Configure<PagamentoConfig>(configuration.GetSection("PagamentoConfig"));
-            builder.Configure<CalendarConfig>(configuration.GetSection("CalendarioConfig"));
-            builder.Configure<TibcoPagamentoConfig>(configuration.GetSection("TibcoInclusaoPagamentoConfig"));
-
-            //builder.AddDependencies();
+            builder.Configure<BackOfficeTedConfig>(configuration.GetSection("BackOfficeTedConfig"));
+            builder.AddDependencies(configuration);
 
             var infos = new ApiInfos { ApiDescription = $"{Resources.ApiInfos.BankName} - {Resources.ApiInfos.ApiName}" };
             builder.SetSwagger(infos);
@@ -41,10 +38,10 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions
         internal static void AddExtensions(this IApplicationBuilder app, IApiVersionDescriptionProvider versionProvider)
         {
             app.SetSwagger(versionProvider);
-            app.UseSerilog();
+            //app.UseSerilog();
             app.UseCompression();
             //app.UseMiddleware<ExceptionMiddleware>();
-            app.UseMiddleware<AntiCSRFMiddleware>();
+           
         }
     }
 }

@@ -2,6 +2,8 @@
 using ABCBrasil.LogEventos.Lib.Infra;
 using ABCBrasil.LogEventos.Lib.Senders.Interfaces;
 using ABCBrasil.LogEventos.Lib.Senders.QueueSenders;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common.Tracer;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.EventLog;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Repository;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services;
@@ -11,27 +13,29 @@ using ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository;
 using ABCBrasil.SegurancaApi.DSL.Libs.Interfaces;
 using ABCBrasil.SegurancaApi.DSL.Libs.Service;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Polly;
 using Polly.Retry;
 using System;
 using System.Net.Http;
 
+
 namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
 {
     public static class IServiceCollectionExtentions
     {
-        public static IServiceCollection AddDependencies(this IServiceCollection builder)
+        public static IServiceCollection AddDependencies(this IServiceCollection builder, IConfiguration configuration)
         {
             builder
-                .AddServices()
+                .AddServices(configuration)
                 .AddRepository()
                 .AddComponents();
 
             return builder;
         }
 
-        static IServiceCollection AddServices(this IServiceCollection builder)
+        static IServiceCollection AddServices(this IServiceCollection builder, IConfiguration configuration)
         {
             builder.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             builder.AddSingleton<IApiIssuer, ApiIssuer>();
@@ -39,19 +43,14 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
             builder.AddScoped<IAntiCSRFService, AntiCSRFService>();
             builder.AddScoped<IIBRepository, IBRepository>();
 
-
-
             //Log Eventos
             builder.AddScoped<ILogService, LogService>();
             builder.AddScoped<IRegistroEventoService, RegistroEventoService>();
             builder.AddScoped<ISenderLogEventos, QueueSenderLogEventos>();
             builder.AddScoped<IEventQueueSender, EventQueueSender>();
-         
-
-
-            //callback
-
-
+           
+            
+           
 
             return builder;
         }
@@ -72,13 +71,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
 
         static IServiceCollection AddComponents(this IServiceCollection builder)
         {
-            //builder.AddNotificationHandler();
-            //builder.AddTraceHandler();
-
+            builder.AddNotificationHandler();
+            builder.AddTraceHandler();
             return builder;
         }
-
-
-
     }
 }

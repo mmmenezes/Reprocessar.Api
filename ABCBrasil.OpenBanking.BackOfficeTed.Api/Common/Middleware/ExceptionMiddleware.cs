@@ -1,5 +1,4 @@
-﻿
-using ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions;
+﻿using ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;

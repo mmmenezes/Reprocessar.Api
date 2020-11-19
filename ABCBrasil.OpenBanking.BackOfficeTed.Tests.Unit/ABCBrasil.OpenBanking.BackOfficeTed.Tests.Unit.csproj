@@ -26,4 +26,10 @@
     <ProjectReference Include="..\ABCBrasil.OpenBanking.BackOfficeTed.Api\ABCBrasil.OpenBanking.BackOfficeTed.Api.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Services\" />
+    <Folder Include="Validators\" />
+  </ItemGroup>
+
 </Project>
