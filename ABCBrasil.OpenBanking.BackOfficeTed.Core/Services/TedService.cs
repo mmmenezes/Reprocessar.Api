@@ -2,6 +2,7 @@
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Models;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Models.Repository;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Mappings;
 using ServiceStack;
 using System;
 using System.Collections.Generic;
@@ -36,12 +37,11 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 
                 transferencias.Add(JsonSerializer.Deserialize<TransferenciaModel>(item.Dc_Payload_Request));
 
-                var transferencia = new TransferenciaInclui
+                foreach (var trans in transferencias)
                 {
-                    
-                };
-
-                _iBRepository.Atualiza(transferencia);
+                    var transferencia = trans.MapTo<TransferenciaInclui>();
+                    _iBRepository.Atualiza(transferencia);
+                }
 
                 _tedRepository.AtualizaEnvio(item.Cd_Evento_Api);
 
