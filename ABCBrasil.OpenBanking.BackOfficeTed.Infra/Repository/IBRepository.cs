@@ -34,7 +34,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
                 CD_TIPO_CONTA_CRED = transferenciaInclui.CdTipoContaCred,
                 CD_CNPJ_CPF_CLI_CRED = transferenciaInclui.CdCnpjCpfCliCred,
                 DC_NOME_CLI_CRED = transferenciaInclui.DcNomeCliCred,
-                CD_CNPJ_CPFCLI_CRED2 = transferenciaInclui.CdCnpjCpfCliCred2
+                CD_CNPJ_CPFCLI_CRED2 = transferenciaInclui.CdCnpjCpfCliCred2,
                 DC_NOME_CLI_CRED2 = transferenciaInclui.DcNomeCliCred2,
                 DT_TRANSFERENCIA = transferenciaInclui.DtTransferencia,
                 CD_PROTOCOLO_API = transferenciaInclui.CdProtocoloApi,
