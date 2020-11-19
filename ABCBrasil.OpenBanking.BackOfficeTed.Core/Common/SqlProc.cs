@@ -18,6 +18,8 @@
         //Insert
         public const string InsertClient_Proc = "SPR_CLIENT_TEMPLATE_INS";
         public const string InsertTeds_Proc = "SPR_REPROCESSA_TED_API_INS";
+        public const string InsertTrans_Proc = "SPR_TRANSFERENCIA_INCLUI";
+
         //Update
         public const string UpdateClient_Proc = "SPR_CLIENT_TEMPLATE_UPD";
 

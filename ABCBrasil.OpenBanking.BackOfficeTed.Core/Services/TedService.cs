@@ -12,11 +12,13 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 {
     public class TedService : ITedService
     {
-        public TedService(IEventoRepository tedRepository)
+        public TedService(IEventoRepository tedRepository, IIBRepository iBRepository)
         {
             _tedRepository = tedRepository;
+            _iBRepository = iBRepository;
         }
         readonly IEventoRepository _tedRepository;
+        readonly IIBRepository _iBRepository;
         public string BuscaTeds(BuscaTedRequest tedRequest)
         {
             var teds = _tedRepository.BuscaTeds(tedRequest);
@@ -34,7 +36,12 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 
                 transferencias.Add(JsonSerializer.Deserialize<TransferenciaModel>(item.Dc_Payload_Request));
 
-                //Metodo que vai ao IB2008
+                var transferencia = new TransferenciaInclui
+                {
+                    
+                };
+
+                _iBRepository.Atualiza(transferencia);
 
                 _tedRepository.AtualizaEnvio(item.Cd_Evento_Api);
 
