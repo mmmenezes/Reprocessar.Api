@@ -1,10 +1,44 @@
 ﻿using ABCBrasil.OpenBanking.BackOfficeTed.Core.Models;
 using AutoMapper;
+using AutoMapper.Configuration;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Mappings
 {
     public class MappingProfile : Profile
     {
+        #region Props
+        private static IConfiguration _config;
+        public static IConfiguration Config
+        {
+            get
+            {
+                return _config;
+            }
+            private set
+            {
+                _config = value;
+            }
+        }
+        public static void SetConfig(IConfiguration config)
+        {
+            Config = config;
+            if (MappingProfile.Mapper == null)
+                _ = new MappingProfile();
+        }
+
+        private static IMapper _mapper;
+        public static IMapper Mapper
+        {
+            get
+            {
+                return _mapper;
+            }
+            private set
+            {
+                _mapper = value;
+            }
+        }
+        #endregion
         public MappingProfile()
         {          
             //Transferencia
