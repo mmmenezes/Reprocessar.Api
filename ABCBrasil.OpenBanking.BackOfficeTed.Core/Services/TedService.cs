@@ -20,10 +20,13 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
         }
         readonly IEventoRepository _tedRepository;
         readonly IIBRepository _ibRepository;
-        public string BuscaTeds(BuscaTedRequest tedRequest)
+        public IEnumerable<TedInfo> BuscaTeds(BuscaTedRequest tedRequest)
         {
             var teds = _tedRepository.BuscaTeds(tedRequest);
-            return teds.ToCsv();
+  
+            var TED = teds.GetAwaiter().GetResult();
+            return TED;
+            
         }
 
         public bool ProcessaTed(string SelectedCSV)
@@ -34,9 +37,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             foreach (var item in selecionadas)
             {
                 _tedRepository.InsereTeds(item);
-                var transferencia = JsonSerializer.Deserialize<TransferenciaModel>(item.Dc_Payload_Request).MapTo<TransferenciaInclui>();
+                var transferencia = item.Dc_Payload_Request.MapTo<TransferenciaInclui>();
                 _ibRepository.Atualiza(transferencia);
-                _tedRepository.AtualizaEnvio(item.Cd_Evento_Api);
+                _tedRepository.AtualizaEnvio(Int32.Parse(item.Cd_Evento_Api));
 
                
             }

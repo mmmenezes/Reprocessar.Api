@@ -22,10 +22,12 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
             return await QueryFirstOrDefaultAsync<bool>(SqlProc.InsertTeds_Proc, param, System.Data.CommandType.StoredProcedure);
         }
 
-        public async Task<List<TedInfo>> BuscaTeds(BuscaTedRequest request)
+        public async Task<IEnumerable<TedInfo>> BuscaTeds(BuscaTedRequest request)
         {
             var param = new { DT_INI = request.DTINI, DT_FIM = request.DTFIM, QTD = request.QTD };
-            return await QueryFirstOrDefaultAsync<List<TedInfo>>(SqlProc.BuscaTedsReprocessar_Proc, param.QTD, System.Data.CommandType.StoredProcedure);
+            var ll =  Query<TedInfo>(SqlProc.BuscaTedsReprocessar_Proc, param);
+            return ll;
+           
         }
         public async Task<bool> InsereTeds(TedInfo ted)
         { 

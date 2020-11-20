@@ -42,7 +42,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
             try
             {
                 var teds = _tedService.BuscaTeds(new BuscaTedRequest { DTINI = dtini, DTFIM = dtfim, QTD = qtd });
-                return Response<string>(teds, HttpStatusCode.OK);
+                return Response<object>(teds, HttpStatusCode.OK);
                
             }
             catch (Exception ex)

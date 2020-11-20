@@ -8,7 +8,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services
 {
     public interface ITedService
     {
-        string BuscaTeds(BuscaTedRequest tedRequest);
+        IEnumerable<TedInfo> BuscaTeds(BuscaTedRequest tedRequest);
         bool ProcessaTed(string SelectedCSV);
 
         

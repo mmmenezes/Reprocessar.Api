@@ -19,7 +19,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbConnect(Shared.Configuration.ABC_CS_NAME);
+            services.AddDbConnect(Shared.Configuration.ABC_API);
+            services.AddDbConnect(Shared.Configuration.ABC_IB);
             services.AddExtentions(Configuration);
             services.AddControllers()
                 .AddNewtonsoftJson(NewtonsoftJsonExtension.ActionNewtonsoftJson);

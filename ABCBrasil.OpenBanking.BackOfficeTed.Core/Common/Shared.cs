@@ -88,8 +88,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Common
             public const string CACHE_MAIN_KEY = "urn:OB:";
             public const string CACHE_CIP_KEY = "TITULO_CIP:";
             public const string ABC_CS_NAME = "ABC_OB_BackOfficeTed";
-            public const string ABC_API = "ABCAPI";
-            public const string ABC_IB = "IB2008";
+            public const string ABC_API = "db_abcapi";
+            public const string ABC_IB = "db_ib";
         }
     }
 }
