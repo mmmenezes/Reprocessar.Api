@@ -9,6 +9,7 @@ using ABCBrasil.OpenBanking.BackOfficeTed.Core.Services;
 using ABCBrasil.SegurancaApi.DSL.Libs.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System;
 using System.Net;
 using System.Threading.Tasks;

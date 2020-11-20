@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.Json;
+using System.IO;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 {
@@ -20,12 +21,28 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
         }
         readonly IEventoRepository _tedRepository;
         readonly IIBRepository _ibRepository;
-        public IEnumerable<TedInfo> BuscaTeds(BuscaTedRequest tedRequest)
+        public BuscaTedsResponse BuscaTeds(BuscaTedRequest tedRequest)
         {
+           
             var teds = _tedRepository.BuscaTeds(tedRequest);
-  
+            File.Create("Teds.csv").Close();
             var TED = teds.GetAwaiter().GetResult();
-            return TED;
+            var csv = new StringBuilder();
+            csv.AppendLine(string.Format("{0},{1},{2}", "Codigo Evento", "Protocolo", "Payload"));
+            foreach (var item in TED)
+            {
+                var first = item.Cd_Evento_Api.ToString();
+                var second = item.Gw_Evento_Api;
+                var third = item.Dc_Payload_Request;
+                var newline = string.Format("{0},{1},{2}", first, second, third);
+                csv.AppendLine(newline);
+            }
+            File.WriteAllText("Teds.csv", csv.ToString());
+            return new BuscaTedsResponse
+            {
+                Teds = TED,
+                CSVByte = Convert.ToBase64String( File.ReadAllBytes("Teds.csv"))
+            };
             
         }
 
@@ -37,7 +54,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             foreach (var item in selecionadas)
             {
                 _tedRepository.InsereTeds(item);
-                var transferencia = item.Dc_Payload_Request.MapTo<TransferenciaInclui>();
+                var transferencia = JsonSerializer.Deserialize<IncluiTedModel>(item.Dc_Payload_Request).MapTo<TransferenciaInclui>();
                 _ibRepository.Atualiza(transferencia);
                 _tedRepository.AtualizaEnvio(Int32.Parse(item.Cd_Evento_Api));
 
