@@ -41,8 +41,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
             AddTrace("Solicitação do endpoint [BuscaTeds]");
             try
             {
-                //return Response<string>(teds, HttpStatusCode.OK);
-                return Response<string>("", HttpStatusCode.OK);
+                var teds = _tedService.BuscaTeds(new BuscaTedRequest { DTINI = dtini, DTFIM = dtfim, QTD = qtd });
+                return Response<string>(teds, HttpStatusCode.OK);
+               
             }
             catch (Exception ex)
             {
