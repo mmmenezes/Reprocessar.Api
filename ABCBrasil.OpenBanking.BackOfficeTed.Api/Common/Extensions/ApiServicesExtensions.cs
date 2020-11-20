@@ -38,7 +38,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions
         internal static void AddExtensions(this IApplicationBuilder app, IApiVersionDescriptionProvider versionProvider)
         {
             app.SetSwagger(versionProvider);
-            //app.UseSerilog();
+            app.UseSerilog();
             app.UseCompression();
             //app.UseMiddleware<ExceptionMiddleware>();
            
