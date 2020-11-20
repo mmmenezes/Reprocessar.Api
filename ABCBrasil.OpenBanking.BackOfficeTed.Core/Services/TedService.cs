@@ -16,10 +16,10 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
         public TedService(IEventoRepository tedRepository, IIBRepository iBRepository)
         {
             _tedRepository = tedRepository;
-            _iBRepository = iBRepository;
+            _ibRepository = iBRepository;
         }
         readonly IEventoRepository _tedRepository;
-        readonly IIBRepository _iBRepository;
+        readonly IIBRepository _ibRepository;
         public string BuscaTeds(BuscaTedRequest tedRequest)
         {
             var teds = _tedRepository.BuscaTeds(tedRequest);
@@ -34,15 +34,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             foreach (var item in selecionadas)
             {
                 _tedRepository.InsereTeds(item);
-
-                transferencias.Add(JsonSerializer.Deserialize<TransferenciaModel>(item.Dc_Payload_Request));
-
-                foreach (var trans in transferencias)
-                {
-                    var transferencia = trans.MapTo<TransferenciaInclui>();
-                    _iBRepository.Atualiza(transferencia);
-                }
-
+                var transferencia = JsonSerializer.Deserialize<TransferenciaModel>(item.Dc_Payload_Request).MapTo<TransferenciaInclui>();
+                _ibRepository.Atualiza(transferencia);
                 _tedRepository.AtualizaEnvio(item.Cd_Evento_Api);
 
                

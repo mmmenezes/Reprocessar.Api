@@ -9,8 +9,6 @@ using ABCBrasil.OpenBanking.BackOfficeTed.Core.Services;
 using ABCBrasil.SegurancaApi.DSL.Libs.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
@@ -35,8 +33,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
 
         //[ProducesResponseType(typeof(ApiResult<ComprovanteResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResult), StatusCodes.Status400BadRequest)]
-        [HttpGet( Name = "PopulaTabela")]
-        public async Task<IActionResult> PopulaTabela(BuscaTedRequest tedRequest)
+        [HttpGet( Name = "BuscaTeds/{dtini}/{dtfim}/{qtd}")]
+        public async Task<IActionResult> PopulaTabela(DateTime dtini,DateTime dtfim,int qtd)
         {
             AddTrace("Solicitação do endpoint [PopulaTabela].");
             var teds = _tedService.BuscaTeds(tedRequest);
@@ -55,6 +53,14 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
                 AddTrace("Finalização do endpoint PopulaTabela.");
             }
 
+        }
+        [ProducesResponseType(typeof(ApiResult), StatusCodes.Status400BadRequest)]
+        [HttpPost(Name = "ReprocessaTed")]
+        public async Task<IActionResult> ReprocessaTed(string SelectedCSV)
+        {
+
+            var res=  _tedService.ProcessaTed(SelectedCSV);
+            return Response<bool>(res, System.Net.HttpStatusCode.OK);
         }
     }
 }
