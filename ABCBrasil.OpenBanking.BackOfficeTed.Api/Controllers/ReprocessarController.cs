@@ -9,6 +9,8 @@ using ABCBrasil.OpenBanking.BackOfficeTed.Core.Services;
 using ABCBrasil.SegurancaApi.DSL.Libs.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
@@ -36,21 +38,21 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
         [HttpGet( Name = "BuscaTeds/{dtini}/{dtfim}/{qtd}")]
         public async Task<IActionResult> PopulaTabela(DateTime dtini,DateTime dtfim,int qtd)
         {
-            AddTrace("Solicitação do endpoint [PopulaTabela].");
-            var teds = _tedService.BuscaTeds(tedRequest);
+            AddTrace("Solicitação do endpoint [BuscaTeds]");
             try
             {
-                return Response<string>(teds, HttpStatusCode.OK);
+                //return Response<string>(teds, HttpStatusCode.OK);
+                return Response<string>("", HttpStatusCode.OK);
             }
             catch (Exception ex)
             {
                 base.AddError(Issues.ce2022, Core.Resources.FriendlyMessages.GeneralFail, ex);
-                return Response(teds, HttpStatusCode.BadRequest);
+                return Response("", HttpStatusCode.BadRequest);
             }
             finally
             {
                 //await base.IncluirLog(teds);
-                AddTrace("Finalização do endpoint PopulaTabela.");
+                AddTrace("Finalização do endpoint BuscaTeds.");
             }
 
         }
@@ -58,9 +60,26 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
         [HttpPost(Name = "ReprocessaTed")]
         public async Task<IActionResult> ReprocessaTed(string SelectedCSV)
         {
+            AddTrace("Solicitação do endpoint [PopulaTabela].");
+            var res = _tedService.ProcessaTed(SelectedCSV);
+            
+            try
+            {
+                return Response<bool>(res, HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                base.AddError(Issues.ce2022, Core.Resources.FriendlyMessages.GeneralFail, ex);
+                return Response("", HttpStatusCode.BadRequest);
+            }
+            finally
+            {
+                //await base.IncluirLog(teds);
+                AddTrace("Finalização do endpoint PopulaTabela.");
+            }
 
-            var res=  _tedService.ProcessaTed(SelectedCSV);
-            return Response<bool>(res, System.Net.HttpStatusCode.OK);
+            
+            
         }
     }
 }
