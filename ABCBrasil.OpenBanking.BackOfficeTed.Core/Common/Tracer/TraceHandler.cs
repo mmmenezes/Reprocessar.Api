@@ -10,8 +10,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Common.Tracer
         public TraceHandler(ILogService logService) => _logService = logService;
 
         public string CorrelationId { get; set; }
+            
 
-        public async Task AddTrace(TraceInfo trace, string prefix = "")
+        public async Task AddTrace(Common.TraceInfo trace, string prefix = "")
         {
             await Task.Run(() =>
             {

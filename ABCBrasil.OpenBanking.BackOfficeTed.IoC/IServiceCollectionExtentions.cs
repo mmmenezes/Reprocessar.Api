@@ -42,15 +42,16 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
             builder.AddScoped<ITedService, TedService>();
             builder.AddScoped<IAntiCSRFService, AntiCSRFService>();
             builder.AddScoped<IIBRepository, IBRepository>();
+            //builder.AddScoped<ITraceHandler, TraceHandler>();
 
             //Log Eventos
             builder.AddScoped<ILogService, LogService>();
             builder.AddScoped<IRegistroEventoService, RegistroEventoService>();
             builder.AddScoped<ISenderLogEventos, QueueSenderLogEventos>();
             builder.AddScoped<IEventQueueSender, EventQueueSender>();
-           
-            
-           
+
+
+
 
             return builder;
         }
@@ -75,5 +76,13 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
             builder.AddTraceHandler();
             return builder;
         }
+
+        public static IServiceCollection AddTraceHandler(this IServiceCollection builder)
+        {
+            builder.AddTransient<ILogService, LogService>();
+            builder.AddTransient<ITraceHandler, TraceHandler>();
+            return builder;
+        }
+
     }
 }

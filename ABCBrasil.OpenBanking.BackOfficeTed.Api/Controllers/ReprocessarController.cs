@@ -9,6 +9,8 @@ using ABCBrasil.OpenBanking.BackOfficeTed.Core.Services;
 using ABCBrasil.SegurancaApi.DSL.Libs.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
@@ -36,9 +38,23 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
         [HttpGet( Name = "PopulaTabela")]
         public async Task<IActionResult> PopulaTabela(BuscaTedRequest tedRequest)
         {
+            AddTrace("Solicitação do endpoint [PopulaTabela].");
             var teds = _tedService.BuscaTeds(tedRequest);
+            try
+            {
+                return Response<string>(teds, HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                base.AddError(Issues.ce2022, Core.Resources.FriendlyMessages.GeneralFail, ex);
+                return Response(teds, HttpStatusCode.BadRequest);
+            }
+            finally
+            {
+                //await base.IncluirLog(teds);
+                AddTrace("Finalização do endpoint PopulaTabela.");
+            }
 
-            return Response<string>(teds, System.Net.HttpStatusCode.OK);
         }
     }
 }
