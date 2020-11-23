@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <PackageReference Include="ABCBrasil.Log.Lib" Version="1.0.14" />
+    <PackageReference Include="Csv" Version="1.0.58" />
 
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.9" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.1" />
