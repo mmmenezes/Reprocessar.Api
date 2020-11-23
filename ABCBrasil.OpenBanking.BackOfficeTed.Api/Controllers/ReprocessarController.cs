@@ -76,9 +76,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
                 return Response("", HttpStatusCode.BadRequest);
             }
 
-            var retorno = _tedService.Processaarquivo(file);
+            var arquivo = _tedService.Processaarquivo(file);
 
-            var teste = _tedService.ProcessaTed(retorno);
+            var retorno = _tedService.ProcessaTed(arquivo);
 
             try
             {

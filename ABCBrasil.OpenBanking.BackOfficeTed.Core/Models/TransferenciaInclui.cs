@@ -22,7 +22,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Models
         public string DcNomeCliCred { get; set; }
         public string CdCnpjCpfCliCred2 { get; set; }
         public string DcNomeCliCred2 { get; set; }
-        public DateTime DtTransferencia { get; set; }
+        public string DtTransferencia { get; set; }
         public string CdProtocoloApi { get; set; }
         public string DcUrlCallBack { get; set; }
         public string CdTedCliente { get; set; }
