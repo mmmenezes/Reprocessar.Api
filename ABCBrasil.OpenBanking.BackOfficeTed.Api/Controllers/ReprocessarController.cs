@@ -43,7 +43,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
         //[ProducesResponseType(typeof(ApiResult<ComprovanteResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResult), StatusCodes.Status400BadRequest)]
         [HttpGet(Name = "BuscaTeds/{dtini}/{dtfim}/{qtd}")]
-        public async Task<IActionResult> PopulaTabela([FromRoute] DateTime dtini, DateTime dtfim, int qtd)
+        public async Task<IActionResult> PopulaTabela( DateTime dtini, DateTime dtfim, int qtd)
         {
             AddTrace("Solicitação do endpoint [BuscaTeds]");
             try

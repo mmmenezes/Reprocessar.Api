@@ -33,13 +33,13 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             File.Create("Teds.csv").Close();
             var TED = teds.GetAwaiter().GetResult();
             var csv = new StringBuilder();
-            csv.AppendLine(string.Format("{0},{1},{2}", "Codigo Evento", "Protocolo", "Payload"));
+            csv.AppendLine(string.Format("{0};{1};{2}", "Codigo Evento", "Protocolo", "Payload"));
             foreach (var item in TED)
             {
                 var first = item.Cd_Evento_Api.ToString();
                 var second = item.Gw_Evento_Api;
                 var third = item.Dc_Payload_Request;
-                var newline = string.Format("{0},{1},{2}", first, second, third);
+                var newline = string.Format("{0};{1};{2}", first, second, third);
                 csv.AppendLine(newline);
             }
             File.WriteAllText("Teds.csv", csv.ToString());
@@ -93,7 +93,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                     var line = Convert.ToString(item).Split(",");
                     transArq.root.Codigo = Int32.Parse(line[0]);
                     transArq.root.Protocolo = line[1].ToString();
-
+              
                     transArq.transferencia.CodCliente = Int32.Parse(line[2].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(line[2].IndexOf(":")-2));
                     transArq.transferencia.AgenciaCliente = line[3].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(line[3].IndexOf(":")-1);
                     transArq.transferencia.ContaCliente = line[4].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(line[4].IndexOf(":") - 1); 
@@ -112,7 +112,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                     result.Add(transArq);
 
                 }
-               
+          
             }
 
             return result;
