@@ -72,4 +72,8 @@
     <DocFileItem Remove="ABCBrasil.OpenBanking.BackOfficeTed.Api.xml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Teds.csv" />
+  </ItemGroup>
+
 </Project>
