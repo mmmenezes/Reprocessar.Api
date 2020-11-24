@@ -34,6 +34,10 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider versionProvider)
         {
+            var culturas = new[] { "en-US" };
+            var locaisOpt = new RequestLocalizationOptions().SetDefaultCulture(culturas[0])
+                .AddSupportedCultures(culturas);
+            app.UseRequestLocalization(locaisOpt);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

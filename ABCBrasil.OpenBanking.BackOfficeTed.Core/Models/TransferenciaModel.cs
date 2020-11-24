@@ -23,7 +23,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Models
         public string NumDocumentoFavorecido2 { get; set; }
         [MaxLength(35, ErrorMessage = "Excedeu o limite máximo de caracteres para o campo!")]
         public string NomeFavorecido2 { get; set; }
-        public string? DataTransacao { get; set; }
+        public DateTime DataTransacao { get; set; }
         public string Finalidade { get; set; }
         public decimal Valor { get; set; }
     }

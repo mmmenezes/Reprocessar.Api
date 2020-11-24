@@ -13,7 +13,8 @@ using Csv;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-
+using System.Text.Json.Serialization;
+using System.Diagnostics;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 {
@@ -63,15 +64,22 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             List<TransferenciaModel> transferencias = new List<TransferenciaModel>();
             foreach (var item in SelectedCSV)
             {
-                var transferencia = JsonSerializer.Deserialize<TransferenciaModel>(item.transferencia.ToJson()).MapTo<TransferenciaInclui>();
+
+                var transferencia = item.transferencia.MapTo<TransferenciaInclui>();
+                    //JsonSerializer.Deserialize<TransferenciaModel>(item.transferencia.ToJson()).MapTo<TransferenciaInclui>();
                 TedInfo ted = new TedInfo();
                 ted.Cd_Evento_Api = item.root.Codigo.ToString();
                 ted.Gw_Evento_Api = item.root.Protocolo;
+                transferencia.CdProtocoloApi = item.root.Protocolo;
                 ted.Dc_Payload_Request = JsonSerializer.Serialize(transferencia);
 
-                var teste = _tedRepository.InsereTeds(ted);
-                var teste2 =_ibRepository.Atualiza(transferencia);
-                var teste3 = _tedRepository.AtualizaEnvio(item.root.Codigo);
+                _tedRepository.InsereTeds(ted);
+                
+                
+                var retorno = _ibRepository.ProcessaTed(transferencia).Result;
+
+
+                _tedRepository.AtualizaEnvio(item.root.Codigo);
 
 
             }
@@ -80,6 +88,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 
 
         }
+       
 
         public List<TransferenciasArquivo> Processaarquivo(UploadViewModel file)
         {
@@ -103,7 +112,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                     //var data = campos[11].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[11].IndexOf(":") - 1);
                     //var dataFormat = data.Substring(0,data.IndexOf("T"));
 
-                    //transArq.transferencia.DataTransacao = DateTime.Parse(dataFormat);
+                    transArq.transferencia.DataTransacao = transArq.transferencia.DataTransacao.AddDays(1);
+                    
 
                     result.Add(transArq);
 
