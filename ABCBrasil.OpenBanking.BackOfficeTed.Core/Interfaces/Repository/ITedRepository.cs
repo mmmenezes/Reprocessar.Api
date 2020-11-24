@@ -10,7 +10,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Repository
     public interface IEventoRepository
     {
         Task<IEnumerable<TedInfo>> BuscaTeds(BuscaTedRequest request);
-        Task<bool> InsereTeds(TedInfo ted);
+        Task<IEnumerable<bool>> InsereTeds(TedInfo ted);
         Task<bool> AtualizaEnvio(int Cd_Evento_Api);
     }
 }

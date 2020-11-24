@@ -29,9 +29,10 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
            
            
         }
-        public async Task<bool> InsereTeds(TedInfo ted)
-        { 
-            return    await QueryFirstOrDefaultAsync<bool>(SqlProc.InsertTeds_Proc, ted, System.Data.CommandType.StoredProcedure);
+        public async Task<IEnumerable<bool>> InsereTeds(TedInfo request)
+        {
+            var param = new { Cd_Evento_Api = request.Cd_Evento_Api, Gw_Evento_Api = request.Gw_Evento_Api, Dc_Payload_Request = request.Dc_Payload_Request };
+            return Query<bool>(SqlProc.InsertTeds_Proc, param);
         }
     }
 }

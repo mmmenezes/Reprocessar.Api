@@ -12,12 +12,14 @@ using System.IO;
 using Csv;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 {
     public class TedService : ITedService
     {
-        public TedService(IEventoRepository tedRepository, IIBRepository iBRepository)
+        public TedService(IEventoRepository tedRepository, IIBRepository iBRepository, IMapper mapper)
         {
             _tedRepository = tedRepository;
             _ibRepository = iBRepository;
@@ -61,14 +63,15 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             List<TransferenciaModel> transferencias = new List<TransferenciaModel>();
             foreach (var item in SelectedCSV)
             {
+                var transferencia = JsonSerializer.Deserialize<TransferenciaModel>(item.transferencia.ToJson()).MapTo<TransferenciaInclui>();
                 TedInfo ted = new TedInfo();
                 ted.Cd_Evento_Api = item.root.Codigo.ToString();
                 ted.Gw_Evento_Api = item.root.Protocolo;
+                ted.Dc_Payload_Request = JsonSerializer.Serialize(transferencia);
 
-                _tedRepository.InsereTeds(ted);
-                var transferencia = JsonSerializer.Deserialize<TransferenciaModel>(item.transferencia.ToJson()).MapTo<TransferenciaInclui>();
-                _ibRepository.Atualiza(transferencia);
-                _tedRepository.AtualizaEnvio(item.root.Codigo);
+                var teste = _tedRepository.InsereTeds(ted);
+                var teste2 =_ibRepository.Atualiza(transferencia);
+                var teste3 = _tedRepository.AtualizaEnvio(item.root.Codigo);
 
 
             }

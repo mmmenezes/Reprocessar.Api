@@ -113,6 +113,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
             try
             {
                 connection.Open();
+                
                 return await connection.QueryFirstOrDefaultAsync<T>(sql, param, commandType: commandType);
             }
 

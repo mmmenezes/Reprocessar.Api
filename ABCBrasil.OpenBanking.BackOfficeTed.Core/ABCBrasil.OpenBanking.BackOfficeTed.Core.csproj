@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-	<PackageReference Include="ABCBrasil.Core" Version="1.0.12" />
+	<PackageReference Include="ABCBrasil.Core" Version="1.0.13" />
 	<PackageReference Include="ABCBrasil.LogEventos.Lib" Version="1.0.12" />
 	<PackageReference Include="ABCBrasil.SegurancaApi.DSL.Libs" Version="1.0.1" />
 	<PackageReference Include="ABCBrasil.Core.Common.Lib" Version="0.0.1" />
