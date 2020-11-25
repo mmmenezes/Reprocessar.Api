@@ -45,13 +45,15 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                 csv.AppendLine(newline);
             }
             File.WriteAllText(FilePath, csv.ToString());
-            File.Delete(FilePath);
-            return new BuscaTedsResponse
+            
+            var result =  new BuscaTedsResponse
             {
                 Teds = TED,
-                CSVByteString = Convert.ToBase64String(File.ReadAllBytes(FilePath)),
+               
                 CSVByte = File.ReadAllBytes(FilePath)
             };
+            File.Delete(FilePath);
+            return result;
 
         }
 
