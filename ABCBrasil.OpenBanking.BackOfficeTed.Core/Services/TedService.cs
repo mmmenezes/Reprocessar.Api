@@ -13,19 +13,19 @@ using Csv;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 {
-    public class TedService : ITedService
+    public class TedService : ServiceBase, ITedService
     {
-        public TedService(IEventoRepository tedRepository, IIBRepository iBRepository, IMapper mapper)
+        public TedService(IEventoRepository tedRepository, IIBRepository iBRepository, IMapper mapper, IApiIssuer issuer) : base(issuer)
         {
             _tedRepository = tedRepository;
             _ibRepository = iBRepository;
         }
         public const string FilePath = "Teds.csv";
-        
+
         readonly IEventoRepository _tedRepository;
         readonly IIBRepository _ibRepository;
         public BuscaTedsResponse BuscaTeds(BuscaTedRequest tedRequest)
@@ -45,11 +45,11 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                 csv.AppendLine(newline);
             }
             File.WriteAllText(FilePath, csv.ToString());
-            
-            var result =  new BuscaTedsResponse
+
+            var result = new BuscaTedsResponse
             {
                 Teds = TED,
-               
+
                 CSVByte = File.ReadAllBytes(FilePath)
             };
             File.Delete(FilePath);
@@ -60,60 +60,92 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
         public bool ProcessaTed(IList<TransferenciasArquivo> SelectedCSV)
         {
 
-            //return false;
-            //var selecionadas = JsonSerializer.Deserialize<List<TransferenciasArquivo>>(SelectedCSV).MapTo<List<TransferenciaInclui>>();
-            
-
-            List<TransferenciaModel> transferencias = new List<TransferenciaModel>();
-            foreach (var item in SelectedCSV)
+            AddTrace("Service Processa Ted");
+            try
             {
-                var transferencia = JsonSerializer.Deserialize<TransferenciaModel>(item.transferencia.ToJson()).MapTo<TransferenciaInclui>();
-                TedInfo ted = new TedInfo();
-                ted.Cd_Evento_Api = item.root.Codigo.ToString();
-                ted.Gw_Evento_Api = item.root.Protocolo;
-                ted.Dc_Payload_Request = JsonSerializer.Serialize(transferencia);
+                AddTrace("Processa ted ", SelectedCSV);
+                List<TransferenciaModel> transferencias = new List<TransferenciaModel>();
+                foreach (var item in SelectedCSV)
+                {
 
-                var teste = _tedRepository.InsereTeds(ted);
-                var teste2 =_ibRepository.Atualiza(transferencia);
-                var teste3 = _tedRepository.AtualizaEnvio(item.root.Codigo);
+                    var transferencia = item.transferencia.MapTo<TransferenciaInclui>();
+                    TedInfo ted = new TedInfo();
+                    ted.Cd_Evento_Api = item.root.Codigo.ToString();
+                    ted.Gw_Evento_Api = item.root.Protocolo;
+                    transferencia.CdProtocoloApi = item.root.Protocolo;
+                    ted.Dc_Payload_Request = JsonSerializer.Serialize(transferencia);
 
+                    var insereTedsRetorno = _tedRepository.InsereTeds(ted).Result;
+                    //if (retoinsereTedsRetornorno. != "0")
+                    //{
+                    //AddTrace($"Falha no Insere Teds. Codigo ted: {ted}", retorno);
+
+                    //}
+
+                    var processaTedretorno = _ibRepository.ProcessaTed(transferencia).Result;
+                    //if (processaTedretorno. != "0")
+                    //{
+                    //AddTrace($"Falha no processa ted. Codigo ted: {ted}", retorno);
+
+                    //}
+
+                    var processaAtualizaEnvio = _tedRepository.AtualizaEnvio(item.root.Codigo).Result;
+                    //if (processaAtualizaEnvio. != "0")
+                    //{
+                    //AddTrace($"Falha no Atualiza Envio da ted. Codigo ted: {ted}", retorno);
+
+                    //}
+
+                }
 
             }
+            catch (Exception ex)
+            {
 
-            return false;
+                AddError(Issues.se3002, Resources.FriendlyMessages.ServiceErrorProcessaarquivo, ex);
+            }
+
+
+            return true;
 
 
         }
 
-        public List<TransferenciasArquivo> Processaarquivo(UploadViewModel file)
+
+        public List<TransferenciasArquivo> ProcessaArquivo(UploadViewModel file)
         {
 
+            AddTrace("Service Processa arquivo");
             var result = new List<TransferenciasArquivo>();
-            
-            using (var stream = file.Teds.OpenReadStream())
+            try
             {
-                var csvLines = CsvReader.ReadFromStream(stream);
-                
-                foreach (var item in csvLines)
+                using (var stream = file.Teds.OpenReadStream())
                 {
-                    TransferenciasArquivo transArq = new TransferenciasArquivo();
-                   
-                                        
-                    var line = Convert.ToString(item).Split(";");
-                    transArq.root.Codigo = Int32.Parse(line[0]);
-                    transArq.root.Protocolo = line[1].ToString();
-                    transArq.transferencia = line[2].FromJson<TransferenciaModel>();
-                    //var campos = Convert.ToString(line[2]).Split(",");
-                    //var data = campos[11].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[11].IndexOf(":") - 1);
-                    //var dataFormat = data.Substring(0,data.IndexOf("T"));
+                    var csvLines = CsvReader.ReadFromStream(stream);
+                    AddTrace("Processa arquivo ", csvLines);
+                    foreach (var item in csvLines)
+                    {
+                        TransferenciasArquivo transArq = new TransferenciasArquivo();
 
-                    //transArq.transferencia.DataTransacao = DateTime.Parse(dataFormat);
+                        var line = Convert.ToString(item).Split(";");
+                        transArq.root.Codigo = Int32.Parse(line[0]);
+                        transArq.root.Protocolo = line[1].ToString();
+                        transArq.transferencia = line[2].FromJson<TransferenciaModel>();
+                        var campos = Convert.ToString(line[2]).Split(",");
+                        var data = campos[11].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[11].IndexOf(":") - 1);
+                        var dataFormat = data.Substring(0, data.IndexOf("T"));
+                        //transArq.transferencia.DataTransacao = transArq.transferencia.DataTransacao.AddDays(1);
+                        result.Add(transArq);
 
-                    result.Add(transArq);
+                    }
 
                 }
-          
             }
+            catch (Exception ex)
+            {
+                AddError(Issues.se3001, Resources.FriendlyMessages.ServiceErrorProcessaarquivo, ex);
+            }
+
 
             return result;
         }
