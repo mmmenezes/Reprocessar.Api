@@ -9,7 +9,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services
     {
         BuscaTedsResponse BuscaTeds(BuscaTedRequest tedRequest);
         bool ProcessaTed(IList<TransferenciasArquivo> SelectedCSV);
-        public List<TransferenciasArquivo> Processaarquivo(UploadViewModel file);
+        public List<TransferenciasArquivo> ProcessaArquivo(UploadViewModel file);
 
     }
 }

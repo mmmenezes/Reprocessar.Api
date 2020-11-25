@@ -43,7 +43,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
         //[ProducesResponseType(typeof(ApiResult<ComprovanteResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResult), StatusCodes.Status400BadRequest)]
         [HttpGet(Name = "BuscaTeds/{dtini}/{dtfim}/{qtd}")]
-        public async Task<IActionResult> PopulaTabela( DateTime dtini, DateTime dtfim, int qtd)
+        public async Task<IActionResult> PopulaTabela(DateTime dtini, DateTime dtfim, int qtd)
         {
             AddTrace("Solicitação do endpoint [BuscaTeds]");
             try
@@ -69,20 +69,30 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
         public async Task<IActionResult> ReprocessaTed([FromForm] UploadViewModel file)
         {
             AddTrace("Solicitação do endpoint [ReprocessaTed].");
-            var result = default(IList<TransferenciaModel>);
-            if (file == null)
-            {
-                base.AddNotification(Issues.ci2011, "Arquivo não encontrado.", NotificationType.Error);
-                return Response("", HttpStatusCode.BadRequest);
-            }
-
-            var arquivo = _tedService.Processaarquivo(file);
-
-            var retorno = _tedService.ProcessaTed(arquivo);
-
             try
             {
-                 return Response("", HttpStatusCode.OK);
+                var result = default(IList<TransferenciaModel>);
+                if (file == null)
+                {
+                    base.AddNotification(Issues.ce2001, "Arquivo não encontrado.", NotificationType.Error);
+                    return Response("", HttpStatusCode.BadRequest);
+                }
+
+                var arquivo = _tedService.ProcessaArquivo(file);
+                if (arquivo == null)
+                {
+                    base.AddNotification(Issues.ce2002, "Erro processar arquivo.", NotificationType.Error);
+                    return Response("", HttpStatusCode.BadRequest);
+                }
+
+                var retorno = _tedService.ProcessaTed(arquivo);
+                if (retorno == null)
+                {
+                    base.AddNotification(Issues.ce2003, "Erro processar TEDS.", NotificationType.Error);
+                    return Response("", HttpStatusCode.BadRequest);
+                }
+
+                return Response("", HttpStatusCode.OK);
             }
             catch (Exception ex)
             {
