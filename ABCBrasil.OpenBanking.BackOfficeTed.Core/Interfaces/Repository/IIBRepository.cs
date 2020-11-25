@@ -9,6 +9,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Repository
 {
     public interface IIBRepository
     {
-       Task<bool> Atualiza(TransferenciaInclui transferenciaInclui);
+       Task<IEnumerable<string>> ProcessaTed(TransferenciaInclui transferenciaInclui);
     }
 }

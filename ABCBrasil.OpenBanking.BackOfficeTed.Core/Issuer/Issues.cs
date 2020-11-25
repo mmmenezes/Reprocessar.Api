@@ -52,9 +52,9 @@
 
         //Range from 02001 to 03000
         //CONTROLLER ERRORS
-        ce2001,
-        ce2002,
-        ce2003,
+        ce2001,//ReprocessaTed
+        ce2002,//ReprocessaTed
+        ce2003,//ReprocessaTed
         ce2004,
         ce2005,
         ce2006,
@@ -81,54 +81,54 @@
 
         //Range from 03001 to 03800
         //SERVICE ERRORS
-        se3001,//ClientService - CreateAsync - ServiceErrorPostClient
-        se3002,//ClientService - FindAsync - ServiceErrorFindClient
-        se3003,//ClientService - SearchAsync - ServiceErrorFindClients
-        se3004,//ClientService - DeleteAsync - ServiceErrorDeleteClients
-        se3005,//ClientService - UpdateAsync - ServiceErrorUpdateClients
-        se3006,//ClientService - DeleteAsync - ServiceErrorClientNotFound
-        se3007,//ClientService - FindAsync - ServiceErrorClientNotFound
-        se3008,//ClientService - UpdateAsync - ServiceErrorClientNotFound
-        se3009,//AbcBrasilApiIntegracaoService - ObterProximoDiaUtil - ServiceErrorExternalApi - Calendário
-        se3010,//AbcBrasilApiIntegracaoService - ObterBoletoAsync - ServiceErrorExternalApi - Core CIP
-        se3011,//AbcBrasilApiIntegracaoService - EnviarCorePagamento - ErroServicoEnviarParaCorePagamento
-        se3012,//AbcBrasilApiIntegracaoService - AbrirLoteCorePagamento - ErroServicoAbrirCorePagamento
-        se3013,//AbcBrasilApiIntegracaoService - FecharLoteCorePagamento - ErroServicoFecharCorePagamento
-        se3014,//PagamentoService - Incluir - ErroServicoIncluirPagamento
-        se3015,//AbcBrasilApiIntegracaoService - AbrirLoteCorePagamento - ErroServicoAbrirCorePagamento
-        se3016,//AbcBrasilApiIntegracaoService - EnviarCorePagamento - ErroServicoEnviarParaCorePagamento
-        se3017,//AbcBrasilApiIntegracaoService - FecharLoteCorePagamento - ErroServicoFecharCorePagamento
-        se3018,//RegistroEventoService - IncluirEvento - 
-        se3019,//AbcBrasilApiIntegracaoService - CalcularTituloAsync - ErroServicoCalcularPagamento
-        se3020,//CipService - ObterBoletoAsync - ServiceErrorBoletoNotFound
-        se3022,//CipService - ObterBoletoAsync - ServiceErrorObterSituacaoBoleto
-        se3023,//CipService - ObterBoletoAsync - Erro Core Cálculo CIP
-        se3024,//AbcBrasilApiIntegracaoService - ObterBoletoAsync - GeneralFail - Core CIP
-        se3025,//PagamentoService - Incluir - ErroServicoTituloJaRegistrado
-        se3026,//PagamentoService - Incluir - ErroServicoContaCliente
-        se3027,//PagamentoService - Incluir - ErroServicoInaptoNConsistido
-        se3028,//CipService - ObterBoletoAsync - ErrorValidCodigoClienteUsuario
-        se3029,//PagamentoValida - ValidaDataHoraProcessamento - ErroServicoIncluirPagamento
-        se3030,//IAbcBrasilApiIntegracaoService
-        se3031,//IAbcBrasilApiIntegracaoService
-        se3032,//IAbcBrasilApiIntegracaoService
-        se3033,//PagamentoService - Incluir - ErroValidaForaHorario
-        se3034,//PagamentoService - Incluir - ErroServicoAplicaValidacoesTitulo
-        se3035,//PagamentoValida - AplicaValidacoesTitulo - InfoServicoTituloExcedeDataLimite
-        se3036,//PagamentoValida - AplicaValidacoesTitulo - InfoServicoTituloInapto
-        se3037,//PagamentoValida - AplicaValidacoesTitulo - InfoServicoTituloExcedeQtdPagtos
-        se3038,//PagamentoService - Incluir - ErroServicoTituloValorDivergente
-        se3039,//PagamentoValida - ValidaTipoAutenticacaoValorDivergente - ErroServicoTpAutcRecbtVlrDivgte
-        se3040,//AbcBrasilApiIntegracaoService - IncluirPagamentoTibcoAsync - ???
-        se3041,//PagamentoService - Incluir - ???
-        se3042,//PagamentoService - ObterSituacaoProtocolo - ErroServicoPagamentoNaoEncontrado
-        se3043,//PagamentoService - ObterSituacaoProtocolo - ErroServicoPagamentoNaoEncontrado
-        se3044,//PagamentoService - ObterSituacaoIdentificador - ErroServicoPagamentoNaoEncontrado
-        se3045,//PagamentoService - ObterSituacaoProtocolo - ErroServicoPagamentoNaoEncontrado
-        se3046,//CallbackCoreService - AtualizarSituacaoPagamento - ServiceErrorCallbackCoreAtualizarSituacao Pgto não encontrado
-        se3047,//CallbackCoreService - AtualizarSituacaoPagamento - ServiceErrorCallbackCoreAtualizarSituacao Pgto Exeption
-        se3048,//ComprovanteService - ObterSituacaoProtocolo - Sem comprovante de pagamento de boleto neste protocolo
-        se3049,//ComprovanteService - ObterSituacaoProtocolo - ErroServicoPagamentoNaoEncontrado
+        se3001,//ReprocessaTed - TedService - Processaarquivo
+        se3002,//ReprocessaTed - TedService - ProcessaTed
+        se3003,
+        se3004,
+        se3005,
+        se3006,
+        se3007,
+        se3008,
+        se3009,
+        se3010,
+        se3011,
+        se3012,
+        se3013,
+        se3014,
+        se3015,
+        se3016,
+        se3017,
+        se3018,
+        se3019,
+        se3020,
+        se3022,
+        se3023,
+        se3024,
+        se3025,
+        se3026,
+        se3027,
+        se3028,
+        se3029,
+        se3030,
+        se3031,
+        se3032,
+        se3033,
+        se3034,
+        se3035,
+        se3036,
+        se3037,
+        se3038,
+        se3039,
+        se3040,
+        se3041,
+        se3042,
+        se3043,
+        se3044,
+        se3045,
+        se3046,
+        se3047,
+        se3048,
+        se3049,
 
         se3050,//PagamentoService - PagamentoExiste - ???
         se3051,//PagamentoService - PagamentoExiste - 

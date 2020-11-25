@@ -13,7 +13,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
         readonly IApiIssuer _issuer;
 
         public ServiceBase(IApiIssuer issuer) => _issuer = issuer;
-
+        
         public virtual void SetNoticationHandle(INotificationHandler notificationHandler) =>
             _notificationHandler = notificationHandler;
 

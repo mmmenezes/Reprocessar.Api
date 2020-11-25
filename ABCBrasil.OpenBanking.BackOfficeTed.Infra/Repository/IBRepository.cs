@@ -16,7 +16,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
         {
         }
 
-        public async Task<bool> Atualiza(TransferenciaInclui transferenciaInclui)
+        public async Task<IEnumerable<string>> ProcessaTed(TransferenciaInclui transferenciaInclui)
         {
             var param = new 
             {
@@ -41,7 +41,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
                 DC_URL_CALLBACK = transferenciaInclui.DcUrlCallBack,
                 CD_TED_CLIENTE = transferenciaInclui.CdTedCliente
             };
-            return await QueryFirstOrDefaultAsync<bool>(SqlProc.InsertTrans_Proc, param, System.Data.CommandType.StoredProcedure);
+            return Query<string>(SqlProc.InsertTrans_Proc, param);
         }
     }
 }

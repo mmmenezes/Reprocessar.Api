@@ -327,4 +327,7 @@
   <data name="ServiceErrorCallbackCoreAtualizarSituacao" xml:space="preserve">
     <value>Falha ao atualizar situação pagamento.</value>
   </data>
+  <data name="ServiceErrorProcessaarquivo" xml:space="preserve">
+    <value>Falha ao processar arquivo ted.</value>
+  </data>
 </root>
