@@ -24,7 +24,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             _tedRepository = tedRepository;
             _ibRepository = iBRepository;
         }
-
+        public const string FilePath = "Teds.csv";
         
         readonly IEventoRepository _tedRepository;
         readonly IIBRepository _ibRepository;
@@ -32,7 +32,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
         {
 
             var teds = _tedRepository.BuscaTeds(tedRequest);
-            File.Create("Teds.csv").Close();
+            File.Create(FilePath).Close();
             var TED = teds.GetAwaiter().GetResult();
             var csv = new StringBuilder();
             csv.AppendLine(string.Format("{0};{1};{2}", "Codigo Evento", "Protocolo", "Payload"));
@@ -44,11 +44,13 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                 var newline = string.Format("{0};{1};{2}", first, second, third);
                 csv.AppendLine(newline);
             }
-            File.WriteAllText("Teds.csv", csv.ToString());
+            File.WriteAllText(FilePath, csv.ToString());
+            File.Delete(FilePath);
             return new BuscaTedsResponse
             {
                 Teds = TED,
-                CSVByte = Convert.ToBase64String(File.ReadAllBytes("Teds.csv"))
+                CSVByteString = Convert.ToBase64String(File.ReadAllBytes(FilePath)),
+                CSVByte = File.ReadAllBytes(FilePath)
             };
 
         }

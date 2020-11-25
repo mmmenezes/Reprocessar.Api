@@ -17,7 +17,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
@@ -42,20 +44,48 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
 
         //[ProducesResponseType(typeof(ApiResult<ComprovanteResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResult), StatusCodes.Status400BadRequest)]
-        [HttpGet(Name = "BuscaTeds/{dtini}/{dtfim}/{qtd}")]
-        public async Task<IActionResult> PopulaTabela( DateTime dtini, DateTime dtfim, int qtd)
+        [HttpGet("TedsBase64/{dtini}/{dtfim}/{qtd}")]
+        public async Task<IActionResult> Teds64( DateTime dtini, DateTime dtfim, int qtd)
         {
             AddTrace("Solicitação do endpoint [BuscaTeds]");
             try
             {
                 var teds = _tedService.BuscaTeds(new BuscaTedRequest { DTINI = dtini, DTFIM = dtfim, QTD = qtd });
                 return Response<object>(teds, HttpStatusCode.OK);
+           
 
             }
             catch (Exception ex)
             {
                 base.AddError(Issues.ce2022, Core.Resources.FriendlyMessages.GeneralFail, ex);
                 return Response("", HttpStatusCode.BadRequest);
+            }
+            finally
+            {
+                //await base.IncluirLog(teds);
+                AddTrace("Finalização do endpoint BuscaTeds.");
+            }
+
+        }
+        [ProducesResponseType(typeof(FileStream), StatusCodes.Status400BadRequest)]
+        [HttpGet ("TedsCSV/{dtini}/{dtfim}/{qtd}")]
+        public async Task<FileContentResult> TedsCSV(DateTime dtini, DateTime dtfim, int qtd)
+        {
+            AddTrace("Solicitação do endpoint [BuscaTeds]");
+            try
+            {
+                var teds = _tedService.BuscaTeds(new BuscaTedRequest { DTINI = dtini, DTFIM = dtfim, QTD = qtd });
+                var result = new FileContentResult(teds.CSVByte, "application/octet-stream");
+                result.FileDownloadName = "Teds.csv";
+                return result;
+
+
+            }
+            catch (Exception ex)
+            {
+                   base.AddError(Issues.ce2022, Core.Resources.FriendlyMessages.GeneralFail, ex);
+                //    return Response("", HttpStatusCode.BadRequest);
+                return null;
             }
             finally
             {
@@ -82,7 +112,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
 
             try
             {
-                 return Response("", HttpStatusCode.OK);
+                return Response("", HttpStatusCode.OK);
             }
             catch (Exception ex)
             {
@@ -96,7 +126,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
             }
 
             //var files = fileOne;
-            return Response("", HttpStatusCode.BadRequest); ;
         }
     }
 }
