@@ -11,6 +11,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Repository
     {
         Task<IEnumerable<TedInfo>> BuscaTeds(BuscaTedRequest request);
         Task<IEnumerable<bool>> InsereTeds(TedInfo ted);
-        Task<bool> AtualizaEnvio(int Cd_Evento_Api);
+        Task<IEnumerable<string>> AtualizaEnvio(int Cd_Evento_Api);
     }
 }

@@ -12,7 +12,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Models
         public string Cd_Evento_Api { get; set; }
 
         public string Dc_Payload_Request { get; set; }
-   
+
+        public bool Status { get; set; }
+
 
         //public string Dt_envio { get; set; }
 

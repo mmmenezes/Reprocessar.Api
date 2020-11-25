@@ -330,4 +330,10 @@
   <data name="ServiceErrorProcessaarquivo" xml:space="preserve">
     <value>Falha ao processar arquivo ted.</value>
   </data>
+  <data name="ServiceErrorProcessa" xml:space="preserve">
+    <value>Falha ao processar ted</value>
+  </data>
+  <data name="ServiceErrorProcessaPROC" xml:space="preserve">
+    <value>Falha ao processar ted(PROC).</value>
+  </data>
 </root>

@@ -655,11 +655,29 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Resources {
         }
         
         /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Falha ao processar ted.
+        /// </summary>
+        public static string ServiceErrorProcessa {
+            get {
+                return ResourceManager.GetString("ServiceErrorProcessa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Consulta uma cadeia de caracteres localizada semelhante a Falha ao processar arquivo ted..
         /// </summary>
         public static string ServiceErrorProcessaarquivo {
             get {
                 return ResourceManager.GetString("ServiceErrorProcessaarquivo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Falha ao processar ted(PROC)..
+        /// </summary>
+        public static string ServiceErrorProcessaPROC {
+            get {
+                return ResourceManager.GetString("ServiceErrorProcessaPROC", resourceCulture);
             }
         }
         

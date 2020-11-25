@@ -20,11 +20,12 @@
         public const string InsertTeds_Proc = "SPR_REPROCESSA_TED_API_INS";
         public const string InsertTrans_Proc = "SPR_TRANSFERENCIA_INCLUI";
 
+
         //Update
         public const string UpdateClient_Proc = "SPR_CLIENT_TEMPLATE_UPD";
-
         public const string UpdateSituacaoPagamento_Proc = "SPR_PAGAMENTO_SITUACAO_UPD";
         public const string UpdateSituacaoPagamentoCallbackCore_Proc = "SPR_CALLBACK_CORE_PAGAMENTO_SITUACAO_UPD";
+        public const string UpdateTrans_Proc = "SPR_REPROCESSA_TED_API_UPD";
 
         //Delete
         public const string DeleteClient_Proc = "SPR_CLIENT_TEMPLATE_DEL";

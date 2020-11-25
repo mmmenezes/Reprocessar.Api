@@ -14,6 +14,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.ViewModels.Arguments.ReProcessaTed;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 {
@@ -57,44 +58,66 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 
         }
 
-        public bool ProcessaTed(IList<TransferenciasArquivo> SelectedCSV)
+        public ReProcessaTed ProcessaTed(IList<TransferenciasArquivo> SelectedCSV)
         {
-
+            var result = default(ReProcessaTed);
+            result = new ReProcessaTed();
+            result.quantidadeTotal = SelectedCSV.Count();
             AddTrace("Service Processa Ted");
             try
             {
                 AddTrace("Processa ted ", SelectedCSV);
                 List<TransferenciaModel> transferencias = new List<TransferenciaModel>();
+                int i = 1;
+                
                 foreach (var item in SelectedCSV)
                 {
-
+                    
+                    
                     var transferencia = item.transferencia.MapTo<TransferenciaInclui>();
-                    TedInfo ted = new TedInfo();
-                    ted.Cd_Evento_Api = item.root.Codigo.ToString();
-                    ted.Gw_Evento_Api = item.root.Protocolo;
+                    transferencia.DcUrlCallBack = item.callback.Url;
+                    TedInfo ted = new TedInfo
+                    {
+                        Cd_Evento_Api = item.root.Codigo.ToString(),
+                        Gw_Evento_Api = item.root.Protocolo
+                    };
                     transferencia.CdProtocoloApi = item.root.Protocolo;
                     ted.Dc_Payload_Request = JsonSerializer.Serialize(transferencia);
+               
+                    try
+                    {
+                        var insereTedsRetorno = _tedRepository.InsereTeds(ted).Result;
+                        if (insereTedsRetorno.Count() != 0)
+                        {
+                        AddTrace($"Falha no Insere Teds. Codigo ted: {ted}", insereTedsRetorno);
 
-                    var insereTedsRetorno = _tedRepository.InsereTeds(ted).Result;
-                    //if (retoinsereTedsRetornorno. != "0")
-                    //{
-                    //AddTrace($"Falha no Insere Teds. Codigo ted: {ted}", retorno);
+                        }
 
-                    //}
+                        var processaTedretorno = _ibRepository.ProcessaTed(transferencia).Result;
+                        if (processaTedretorno.Count() != 0)
+                        {
+                            AddTrace($"Falha no Insere Teds. Codigo ted: {ted}", processaTedretorno);
 
-                    var processaTedretorno = _ibRepository.ProcessaTed(transferencia).Result;
-                    //if (processaTedretorno. != "0")
-                    //{
-                    //AddTrace($"Falha no processa ted. Codigo ted: {ted}", retorno);
+                        }
 
-                    //}
+                        var processaAtualizaEnvio = _tedRepository.AtualizaEnvio(item.root.Codigo).Result;
+                        if (processaTedretorno.Count() != 0)
+                        {
+                            AddTrace($"Falha no Insere Teds. Codigo ted: {ted}", processaTedretorno);
+                        }
+                        ted.Status = true;
+                    }
+                    catch (Exception ex)
+                    {
 
-                    var processaAtualizaEnvio = _tedRepository.AtualizaEnvio(item.root.Codigo).Result;
-                    //if (processaAtualizaEnvio. != "0")
-                    //{
-                    //AddTrace($"Falha no Atualiza Envio da ted. Codigo ted: {ted}", retorno);
+                        AddError(Issues.se3003, Resources.FriendlyMessages.ServiceErrorProcessaPROC, ex);
+                        result.quantidadeFalha = i++;
+                        ted.Status = false;
+                    }
 
-                    //}
+
+                    
+                    result.teds.Add(ted);
 
                 }
 
@@ -102,11 +125,11 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             catch (Exception ex)
             {
 
-                AddError(Issues.se3002, Resources.FriendlyMessages.ServiceErrorProcessaarquivo, ex);
+                AddError(Issues.se3002, Resources.FriendlyMessages.ServiceErrorProcessa, ex);
             }
 
 
-            return true;
+            return result;
 
 
         }
@@ -134,7 +157,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                         var campos = Convert.ToString(line[2]).Split(",");
                         var data = campos[11].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[11].IndexOf(":") - 1);
                         var dataFormat = data.Substring(0, data.IndexOf("T"));
-                        //transArq.transferencia.DataTransacao = transArq.transferencia.DataTransacao.AddDays(1);
+                        transArq.transferencia.DataTransacao = Convert.ToDateTime(dataFormat);
+                        var callback = campos[14].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[11].IndexOf(":")-2 );
+                        transArq.callback.Url = callback;
                         result.Add(transArq);
 
                     }

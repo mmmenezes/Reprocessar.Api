@@ -83,7 +83,7 @@
         //SERVICE ERRORS
         se3001,//ReprocessaTed - TedService - Processaarquivo
         se3002,//ReprocessaTed - TedService - ProcessaTed
-        se3003,
+        se3003,//ReprocessaTed - TedService - ProcessaTed
         se3004,
         se3005,
         se3006,
