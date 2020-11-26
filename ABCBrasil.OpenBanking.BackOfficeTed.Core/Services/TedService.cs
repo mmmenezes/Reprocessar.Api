@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.ViewModels.Arguments.ReProcessaTed;
+using System.Web.Helpers;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 {
@@ -31,30 +32,49 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
         readonly IIBRepository _ibRepository;
         public BuscaTedsResponse BuscaTeds(BuscaTedRequest tedRequest)
         {
-
-            var teds = _tedRepository.BuscaTeds(tedRequest);
-            File.Create(FilePath).Close();
-            var TED = teds.GetAwaiter().GetResult();
-            var csv = new StringBuilder();
-            csv.AppendLine(string.Format("{0};{1};{2}", "Codigo Evento", "Protocolo", "Payload"));
-            foreach (var item in TED)
+            try
             {
-                var first = item.Cd_Evento_Api.ToString();
-                var second = item.Gw_Evento_Api;
-                var third = item.Dc_Payload_Request;
-                var newline = string.Format("{0};{1};{2}", first, second, third);
-                csv.AppendLine(newline);
+                var teds = _tedRepository.BuscaTeds(tedRequest);
+                File.Create(FilePath).Close();
+                var TED = teds.GetAwaiter().GetResult();
+                var csv = new StringBuilder();
+                csv.AppendLine(string.Format("{0};{1};{2}", "Codigo Evento", "Protocolo", "Payload"));
+                foreach (var item in TED)
+                {
+                    try
+                    {
+                        var first = item.Cd_Evento_Api.ToString();
+                        var second = item.Gw_Evento_Api;
+                        var third = item.Dc_Payload_Request;
+                        var newline = string.Format("{0};{1};{2}", first, second, third);
+                        csv.AppendLine(newline);
+                    }
+                    catch (Exception err)
+                    {
+
+                        AddTrace(Issues.ce2001, "Ocorreu ao colocar uma ted no arquivo", err);
+                    }
+                  
+                }
+                File.WriteAllText(FilePath, csv.ToString());
+                var result = new BuscaTedsResponse
+                {
+                    Teds = TED,
+                    CSVByte = File.ReadAllBytes(FilePath)
+                };
+             
+                return result;
             }
-            File.WriteAllText(FilePath, csv.ToString());
-
-            var result = new BuscaTedsResponse
+            catch (Exception)
             {
-                Teds = TED,
 
-                CSVByte = File.ReadAllBytes(FilePath)
-            };
-            File.Delete(FilePath);
-            return result;
+                throw;
+            }
+            finally
+            {
+                File.Delete(FilePath);
+            }
+          
 
         }
 
@@ -155,10 +175,13 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                         transArq.root.Protocolo = line[1].ToString();
                         transArq.transferencia = line[2].FromJson<TransferenciaModel>();
                         var campos = Convert.ToString(line[2]).Split(",");
-                        var data = campos[11].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[11].IndexOf(":") - 1);
+                        var dataindex = Array.FindIndex(campos, row => row.Contains("DataTransacao"));
+                        var data = campos[dataindex].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[dataindex].IndexOf(":") - 1);
                         var dataFormat = data.Substring(0, data.IndexOf("T"));
                         transArq.transferencia.DataTransacao = Convert.ToDateTime(dataFormat);
-                        var callback = campos[14].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[11].IndexOf(":")-2 );
+                        var callbackindex = Array.FindIndex(campos, row => row.Contains("Callback"));
+                        var callback = campos[callbackindex].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[callbackindex].IndexOf(":") - 2);
+                        callback = callback.Substring(callback.IndexOf("http"));
                         transArq.callback.Url = callback;
                         result.Add(transArq);
 
