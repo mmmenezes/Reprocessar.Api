@@ -49,7 +49,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Mappings
                 cfg.CreateMap<TransferenciaModel, TransferenciaInclui>()
                 .ForMember(x => x.CdTipoCliente, opt => opt.MapFrom(y => y.CodCliente))
                 .ForMember(x => x.CdUsuario, opt => opt.MapFrom(y => 10))
-                .ForMember(x => x.IdTransacao, opt => opt.MapFrom(y => "CCCC"))
+                .ForMember(x => x.IdTransacao, opt => opt.MapFrom(y => "TEDC"))
                 .ForMember(x => x.CdAgenciaDebito, opt => opt.MapFrom(y => y.AgenciaCliente))
                 .ForMember(x => x.DcContaDebito, opt => opt.MapFrom(y => y.ContaCliente))
                 .ForMember(x => x.VlValor, opt => opt.MapFrom(y => y.Valor))
