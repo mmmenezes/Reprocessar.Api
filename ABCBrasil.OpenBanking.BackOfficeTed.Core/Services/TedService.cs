@@ -180,9 +180,12 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                         var dataFormat = data.Substring(0, data.IndexOf("T"));
                         transArq.transferencia.DataTransacao = Convert.ToDateTime(dataFormat);
                         var callbackindex = Array.FindIndex(campos, row => row.Contains("Callback"));
-                        var callback = campos[callbackindex].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[callbackindex].IndexOf(":") - 2);
-                        callback = callback.Substring(callback.IndexOf("http"));
-                        transArq.callback.Url = callback;
+                        if (callbackindex > 0)
+                        {
+                            var callback = campos[callbackindex].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[callbackindex].IndexOf(":") - 2);
+                            callback = callback.Substring(callback.IndexOf("http"));
+                            transArq.callback.Url = callback;
+                        }
                         result.Add(transArq);
 
                     }
