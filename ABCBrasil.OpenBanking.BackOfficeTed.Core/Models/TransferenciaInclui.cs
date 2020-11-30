@@ -26,6 +26,16 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Models
         public string CdProtocoloApi { get; set; }
         public string DcUrlCallBack { get; set; }
         public string CdTedCliente { get; set; }
-        
+        public string CdUsuarioOpenBanking { get; set; }
+        public string CdRetorno { get; set; }
+        public string DcMensagem { get; set; }
+        public string DcUrlCallbackMensagem { get; set; }
+      
+
+
+
+
+
+
     }
 }

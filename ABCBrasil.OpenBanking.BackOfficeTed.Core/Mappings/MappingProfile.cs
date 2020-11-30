@@ -64,11 +64,20 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Mappings
                 .ForMember(x => x.DcNomeCliCred2, opt => opt.MapFrom(y => y.NomeFavorecido2))
                 .ForMember(x => x.DtTransferencia, opt => opt.MapFrom(y => y.DataTransacao))
                 .ForMember(x => x.CdProtocoloApi, opt => opt.MapFrom(y => ""))
+                .ForMember(x => x.DcUrlCallBack, opt => opt.MapFrom(y => ""))
+                .ForMember(x => x.CdTedCliente, opt => opt.MapFrom(y => ""))
+                .ForMember(x => x.CdUsuarioOpenBanking, opt => opt.MapFrom(y => ""))
+                .ForMember(x => x.CdRetorno, opt => opt.MapFrom(y => ""))
+                .ForMember(x => x.DcMensagem, opt => opt.MapFrom(y => ""))
+
+
                 ;
-
                 
+       
+     
 
-            });
+
+    });
             MappingProfile.Mapper = configMapper.CreateMapper();
         }
     }
