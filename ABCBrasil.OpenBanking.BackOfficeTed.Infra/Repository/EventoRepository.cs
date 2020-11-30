@@ -24,7 +24,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
 
         public async Task<IEnumerable<TedInfo>> BuscaTeds(BuscaTedRequest request)
         {
-            var param = new { DT_INI = request.DTINI, DT_FIM = request.DTFIM, CDCRC = request.CDCliente };
+            if(request.CDCliente == null)
+                request.CDCliente = 0;
+            var param  = new { DT_INI = request.DTINI, DT_FIM = request.DTFIM, CDCRC = request.CDCliente };
             return Query<TedInfo>(SqlProc.BuscaTedsReprocessar_Proc, param);
            
            
