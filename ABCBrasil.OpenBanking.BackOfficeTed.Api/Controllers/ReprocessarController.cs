@@ -45,13 +45,13 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
 
         //[ProducesResponseType(typeof(ApiResult<ComprovanteResponse>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(ApiResult), StatusCodes.Status400BadRequest)]
-        [HttpGet("TedsBase64/{dtini}/{dtfim}/{qtd}")]
-        public async Task<IActionResult> Teds64( DateTime dtini, DateTime dtfim, int qtd)
+        [HttpGet("TedsBase64/{dtini}/{dtfim}/{cdcliente}")]
+        public async Task<IActionResult> Teds64( DateTime dtini, DateTime dtfim, int cdcliente)
         {
             AddTrace("Solicitação do endpoint [BuscaTeds]");
             try
             {
-                var teds = _tedService.BuscaTeds(new BuscaTedRequest { DTINI = dtini, DTFIM = dtfim, QTD = qtd });
+                var teds = _tedService.BuscaTeds(new BuscaTedRequest { DTINI = dtini, DTFIM = dtfim, CDCliente = cdcliente });
                 return Response<object>(teds, HttpStatusCode.OK);
            
 
@@ -69,13 +69,13 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
 
         }
         [ProducesResponseType(typeof(FileStream), StatusCodes.Status400BadRequest)]
-        [HttpGet ("TedsCSV/{dtini}/{dtfim}/{qtd}")]
-        public async Task<FileContentResult> TedsCSV(DateTime dtini, DateTime dtfim, int qtd)
+        [HttpGet ("TedsCSV/{dtini}/{dtfim}/{cdcliente}")]
+        public async Task<FileContentResult> TedsCSV(DateTime dtini, DateTime dtfim, int cdcliente = 0)
         {
             AddTrace("Solicitação do endpoint [BuscaTeds]");
             try
             {
-                var teds = _tedService.BuscaTeds(new BuscaTedRequest { DTINI = dtini, DTFIM = dtfim, QTD = qtd });
+                var teds = _tedService.BuscaTeds(new BuscaTedRequest { DTINI = dtini, DTFIM = dtfim, CDCliente = cdcliente });
                 var result = new FileContentResult(teds.CSVByte, "application/octet-stream");
                 result.FileDownloadName = "Teds.csv";
                 return result;

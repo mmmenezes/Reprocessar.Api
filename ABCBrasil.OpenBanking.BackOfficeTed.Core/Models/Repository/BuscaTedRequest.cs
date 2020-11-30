@@ -8,6 +8,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Models.Repository
     {
         public DateTime DTINI { get; set; }
         public DateTime DTFIM { get; set; }
-        public int QTD { get; set; }
+        public int CDCliente { get; set; }
     }
 }

@@ -38,15 +38,16 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                 File.Create(FilePath).Close();
                 var TED = teds.GetAwaiter().GetResult();
                 var csv = new StringBuilder();
-                csv.AppendLine(string.Format("{0};{1};{2}", "Codigo Evento", "Protocolo", "Payload"));
+                csv.AppendLine(string.Format("{0};{1};{2};{3}", "Codigo Evento", "Protocolo","CodigoCliente", "Payload"));
                 foreach (var item in TED)
                 {
                     try
                     {
                         var first = item.Cd_Evento_Api.ToString();
                         var second = item.Gw_Evento_Api;
-                        var third = item.Dc_Payload_Request;
-                        var newline = string.Format("{0};{1};{2}", first, second, third);
+                        var third = item.Cd_Crc;
+                        var fourth = item.Dc_Payload_Request;
+                        var newline = string.Format("{0};{1};{2};{3}", first, second,third ,fourth);
                         csv.AppendLine(newline);
                     }
                     catch (Exception err)
