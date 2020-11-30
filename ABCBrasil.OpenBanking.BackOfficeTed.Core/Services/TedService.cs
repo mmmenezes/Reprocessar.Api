@@ -174,8 +174,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                         var line = Convert.ToString(item).Split(";");
                         transArq.root.Codigo = Int32.Parse(line[0]);
                         transArq.root.Protocolo = line[1].ToString();
-                        transArq.transferencia = line[2].FromJson<TransferenciaModel>();
-                        var campos = Convert.ToString(line[2]).Split(",");
+                        transArq.root.CodigoCliente = line[3].ToString();
+                        transArq.transferencia = line[3].FromJson<TransferenciaModel>();
+                        var campos = Convert.ToString(line[3]).Split(",");
                         var dataindex = Array.FindIndex(campos, row => row.Contains("DataTransacao"));
                         var data = campos[dataindex].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[dataindex].IndexOf(":") - 1);
                         var dataFormat = data.Substring(0, data.IndexOf("T"));

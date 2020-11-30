@@ -18,7 +18,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Models
         {
             public int Codigo { get; set; }
             public string Protocolo { get; set; }
-            
+            public string CodigoCliente { get; set; }
+
         }
 
         public Root root { get; set; }
