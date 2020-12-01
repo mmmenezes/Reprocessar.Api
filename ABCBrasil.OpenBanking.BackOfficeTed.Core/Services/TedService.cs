@@ -38,7 +38,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                 File.Create(FilePath).Close();
                 var TED = teds.GetAwaiter().GetResult();
                 var csv = new StringBuilder();
-                csv.AppendLine(string.Format("{0};{1};{2};{3}", "Codigo Evento", "Protocolo","CodigoCliente", "Payload"));
+                csv.AppendLine(string.Format("{0};{1};{2};{3}", "Codigo Evento", "Protocolo", "CodigoCliente", "Payload"));
                 foreach (var item in TED)
                 {
                     try
@@ -47,7 +47,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                         var second = item.Gw_Evento_Api;
                         var third = item.Cd_Crc;
                         var fourth = item.Dc_Payload_Request;
-                        var newline = string.Format("{0};{1};{2};{3}", first, second,third ,fourth);
+                        var newline = string.Format("{0};{1};{2};{3}", first, second, third, fourth);
                         csv.AppendLine(newline);
                     }
                     catch (Exception err)
@@ -55,7 +55,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 
                         AddTrace(Issues.ce2001, "Ocorreu ao colocar uma ted no arquivo", err);
                     }
-                  
+
                 }
                 File.WriteAllText(FilePath, csv.ToString());
                 var result = new BuscaTedsResponse
@@ -63,7 +63,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                     Teds = TED,
                     CSVByte = File.ReadAllBytes(FilePath)
                 };
-             
+
                 return result;
             }
             catch (Exception)
@@ -75,7 +75,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             {
                 File.Delete(FilePath);
             }
-          
+
 
         }
 
@@ -90,27 +90,28 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                 AddTrace("Processa ted ", SelectedCSV);
                 List<TransferenciaModel> transferencias = new List<TransferenciaModel>();
                 int i = 1;
-                
+
                 foreach (var item in SelectedCSV)
                 {
-                    
-                    
+
+
                     var transferencia = item.transferencia.MapTo<TransferenciaInclui>();
                     transferencia.DcUrlCallBack = item.callback.Url;
                     TedInfo ted = new TedInfo
                     {
                         Cd_Evento_Api = item.root.Codigo.ToString(),
-                        Gw_Evento_Api = item.root.Protocolo
+                        Gw_Evento_Api = item.root.Protocolo,
+                        Cd_Crc = Int32.Parse( item.root.CodigoCliente)
                     };
                     transferencia.CdProtocoloApi = item.root.Protocolo;
                     ted.Dc_Payload_Request = JsonSerializer.Serialize(transferencia);
-               
+
                     try
                     {
                         var insereTedsRetorno = _tedRepository.InsereTeds(ted).Result;
                         if (insereTedsRetorno.Count() != 0)
                         {
-                        AddTrace($"Falha no Insere Teds. Codigo ted: {ted}", insereTedsRetorno);
+                            AddTrace($"Falha no Insere Teds. Codigo ted: {ted}", insereTedsRetorno);
 
                         }
 
@@ -137,7 +138,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                     }
 
 
-                    
+
                     result.teds.Add(ted);
 
                 }
@@ -173,8 +174,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 
                         var line = Convert.ToString(item).Split(";");
                         transArq.root.Codigo = Int32.Parse(line[0]);
-                        transArq.root.Protocolo = line[1].ToString();
-                        transArq.root.CodigoCliente = line[3].ToString();
+                        transArq.root.Protocolo = line[1].ToString() ?? "";
+                        transArq.root.CodigoCliente = line[2].ToString() ?? "";
                         transArq.transferencia = line[3].FromJson<TransferenciaModel>();
                         var campos = Convert.ToString(line[3]).Split(",");
                         var dataindex = Array.FindIndex(campos, row => row.Contains("DataTransacao"));
