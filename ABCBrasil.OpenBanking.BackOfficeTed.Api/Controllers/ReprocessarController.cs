@@ -111,7 +111,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
 
             var arquivo = _tedService.ProcessaArquivo(file);
 
-            result = _tedService.ProcessaTed(arquivo);
+            result = _tedService.ProcessaArquivoTed(arquivo);
 
             try
             {

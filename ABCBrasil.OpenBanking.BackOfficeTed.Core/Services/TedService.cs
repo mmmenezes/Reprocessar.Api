@@ -79,12 +79,12 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 
         }
 
-        public ReProcessaTed ProcessaTed(IList<TransferenciasArquivo> SelectedCSV)
+        public ReProcessaTed ProcessaArquivoTed(IList<TransferenciasArquivo> SelectedCSV)
         {
             var result = default(ReProcessaTed);
             result = new ReProcessaTed();
             result.quantidadeTotal = SelectedCSV.Count();
-            AddTrace("Service Processa Ted");
+            AddTrace("Service Processa Arquivo Ted (ProcessaArquivoTed)");
             try
             {
                 AddTrace("Processa ted ", SelectedCSV);
@@ -150,7 +150,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                 AddError(Issues.se3002, Resources.FriendlyMessages.ServiceErrorProcessa, ex);
             }
 
-
+            AddTrace("Fim Service Processa Arquivo Ted (ProcessaArquivoTed)");
             return result;
 
 
