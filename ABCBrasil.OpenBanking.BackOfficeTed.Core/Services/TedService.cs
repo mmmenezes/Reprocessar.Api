@@ -114,7 +114,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                             AddTrace($"Falha no Insere Teds. Codigo ted: {ted}", insereTedsRetorno);
 
                         }
-
+                        transferencia.CdUsuarioOpenBanking = _tedRepository.BuscaUser(transferencia.CdProtocoloApi).Result.First();
                         var processaTedretorno = _ibRepository.ProcessaTed(transferencia).Result;
                         if (processaTedretorno.Count() != 0)
                         {

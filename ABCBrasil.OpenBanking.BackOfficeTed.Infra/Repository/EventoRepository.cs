@@ -31,6 +31,13 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
            
            
         }
+
+        public async Task<IEnumerable<string>> BuscaUser(string Protocolo)
+        {
+            var param = new { Protocolo = Protocolo };
+            return Query<string>(SqlProc.BuscaUserReprocessarTed, param);
+        }
+
         public async Task<IEnumerable<bool>> InsereTeds(TedInfo request)
         {
             var param = new { Cd_Evento_Api = request.Cd_Evento_Api, Gw_Evento_Api = request.Gw_Evento_Api, Dc_Payload_Request = request.Dc_Payload_Request };

@@ -11,6 +11,7 @@
         public const string FindClientPagination_Proc = "SPR_CLIENT_TEMPLATE_PAG_SEL";
         public const string FindClient_Proc = "SPR_CLIENT_TEMPLATE_SEL";
         public const string FindClientDocument_Proc = "SPR_CLIENT_TEMPLATE_SEL_DOCUMENT";
+        public const string BuscaUserReprocessarTed = "SPR_REPROCESSA_TED_API_USER_SEL";
 
         public const string BuscaPagamentoPorProtocolo_Proc = "SPR_PAGAMENTO_SITUACAO_PROTOCOLO_SEL";
         public const string BuscaPagamentoPorIdentificador_Proc = "SPR_PAGAMENTO_SITUACAO_IDENTIFICADOR_SEL";
