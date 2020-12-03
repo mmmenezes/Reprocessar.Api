@@ -15,14 +15,13 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Middleware
         readonly ILogService _logService;
         readonly IApiIssuer _apiIssuer;
 
-        public ExceptionMiddleware(RequestDelegate next, ILogService logService, IApiIssuer apiIssuer)
+        public ExceptionMiddleware(RequestDelegate next,  IApiIssuer apiIssuer)
         {
             _next = next;
-            _logService = logService;
             _apiIssuer = apiIssuer;
         }
 
-        public async Task InvokeAsync(HttpContext httpContext)
+        public async Task InvokeAsync(HttpContext httpContext, ILogService logService)
         {
             try
             {
@@ -30,14 +29,14 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Middleware
             }
             catch (Exception ex)
             {
-                _logService.Write(new IssueDetail
+                logService.Write(new IssueDetail
                 {
                     Id = _apiIssuer.Maker(Issues.me4001),
                     Message = ex.Message,
                     Level = IssueLevelEnum.Error,
                     Exception = ex
                 }, _apiIssuer.Prefix);
-                await HandleExceptionAsync(httpContext);
+                await HandleExceptionAsync(httpContext );
             }
         }
         private Task HandleExceptionAsync(HttpContext context)

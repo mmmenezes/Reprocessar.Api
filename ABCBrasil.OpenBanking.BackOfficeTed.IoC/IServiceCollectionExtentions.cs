@@ -42,7 +42,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
             builder.AddScoped<ITedService, TedService>();
             builder.AddScoped<IAntiCSRFService, AntiCSRFService>();
             builder.AddScoped<IIBRepository, IBRepository>();
-            //builder.AddScoped<ITraceHandler, TraceHandler>();
+            builder.AddScoped<ITraceHandler, TraceHandler>();
 
             //Log Eventos
             builder.AddScoped<ILogService, LogService>();

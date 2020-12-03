@@ -40,7 +40,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions
             app.SetSwagger(versionProvider);
             app.UseSerilog();
             app.UseCompression();
-            //app.UseMiddleware<ExceptionMiddleware>();
+            app.UseMiddleware<ExceptionMiddleware>();
            
         }
     }
