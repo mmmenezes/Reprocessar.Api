@@ -69,6 +69,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Mappings
                 .ForMember(x => x.CdUsuarioOpenBanking, opt => opt.MapFrom(y => ""))
                 .ForMember(x => x.CdRetorno, opt => opt.MapFrom(y => ""))
                 .ForMember(x => x.DcMensagem, opt => opt.MapFrom(y => ""))
+                .ForMember(x=> x.CdFinalidade, opt => opt.MapFrom(y=> y.Finalidade))
+                .ForMember(x=>x.CdTipoContaCred, opt => opt.MapFrom(y=> y.TipoContaFavorecido))
 
 
                 ;

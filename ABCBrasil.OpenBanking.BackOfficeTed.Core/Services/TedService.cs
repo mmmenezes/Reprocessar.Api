@@ -114,6 +114,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                             AddTrace($"Falha no Insere Teds. Codigo ted: {ted}", insereTedsRetorno);
 
                         }
+                        if (transferencia.CdTedCliente == "") transferencia.CdTedCliente = null;
                         transferencia.CdUsuarioOpenBanking = _tedRepository.BuscaUser(transferencia.CdProtocoloApi).Result.First();
                         var processaTedretorno = _ibRepository.ProcessaTed(transferencia).Result;
                         if (processaTedretorno.Count() != 0)
@@ -183,11 +184,12 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                         var dataFormat = data.Substring(0, data.IndexOf("T"));
                         transArq.transferencia.DataTransacao = Convert.ToDateTime(dataFormat);
                         var callbackindex = Array.FindIndex(campos, row => row.Contains("Callback"));
-                        if (callbackindex > 0)
+                        if (callbackindex > 0 && (!campos[callbackindex].Contains(":null")))
                         {
                             var callback = campos[callbackindex].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[callbackindex].IndexOf(":") - 2);
-                            callback = callback.Substring(callback.IndexOf("http"));
-                            transArq.callback.Url = callback;
+                                callback = callback.Substring(callback.IndexOf("http"));
+                                transArq.callback.Url = callback;
+                            
                         }
                         result.Add(transArq);
 
