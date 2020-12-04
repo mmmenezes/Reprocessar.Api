@@ -21,7 +21,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 {
     public class TedService : ServiceBase, ITedService
     {
-        public TedService(IEventoRepository tedRepository, IIBRepository iBRepository, IMapper mapper, IApiIssuer issuer) : base(issuer)
+        public TedService(IEventoRepository tedRepository, IIBRepository iBRepository, IApiIssuer issuer) : base(issuer)
         {
             _tedRepository = tedRepository;
             _ibRepository = iBRepository;
@@ -81,9 +81,11 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 
         public ReProcessaTed ProcessaArquivoTed(IList<TransferenciasArquivo> SelectedCSV)
         {
-            var result = default(ReProcessaTed);
-            result = new ReProcessaTed();
-            result.quantidadeTotal = SelectedCSV.Count();
+
+            var result = new ReProcessaTed
+            {
+                quantidadeTotal = SelectedCSV.Count()
+            };
             AddTrace("Service Processa Arquivo Ted (ProcessaArquivoTed)");
             try
             {
@@ -165,35 +167,32 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             var result = new List<TransferenciasArquivo>();
             try
             {
-                using (var stream = file.Teds.OpenReadStream())
+                using var stream = file.Teds.OpenReadStream();
+                var csvLines = CsvReader.ReadFromStream(stream);
+                AddTrace("Processa arquivo ", csvLines);
+                foreach (var item in csvLines)
                 {
-                    var csvLines = CsvReader.ReadFromStream(stream);
-                    AddTrace("Processa arquivo ", csvLines);
-                    foreach (var item in csvLines)
-                    {
-                        TransferenciasArquivo transArq = new TransferenciasArquivo();
+                    TransferenciasArquivo transArq = new TransferenciasArquivo();
 
-                        var line = Convert.ToString(item).Split(";");
-                        transArq.root.Codigo = Int32.Parse(line[0]);
-                        transArq.root.Protocolo = line[1].ToString() ?? "";
-                        transArq.root.CodigoCliente = line[2].ToString() ?? "";
-                        transArq.transferencia = line[3].FromJson<TransferenciaModel>();
-                        var campos = Convert.ToString(line[3]).Split(",");
-                        var dataindex = Array.FindIndex(campos, row => row.Contains("DataTransacao"));
-                        var data = campos[dataindex].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[dataindex].IndexOf(":") - 1);
-                        var dataFormat = data.Substring(0, data.IndexOf("T"));
-                        transArq.transferencia.DataTransacao = Convert.ToDateTime(dataFormat);
-                        var callbackindex = Array.FindIndex(campos, row => row.Contains("Callback"));
-                        if (callbackindex > 0 && (!campos[callbackindex].Contains(":null")))
-                        {
-                            var callback = campos[callbackindex].ToString().Replace("\"", "").Replace("{", "").Replace("}", "").Substring(campos[callbackindex].IndexOf(":") - 2);
-                                callback = callback.Substring(callback.IndexOf("http"));
-                                transArq.callback.Url = callback;
-                            
-                        }
-                        result.Add(transArq);
+                    var line = Convert.ToString(item).Split(";");
+                    transArq.root.Codigo = Int32.Parse(line[0]);
+                    transArq.root.Protocolo = line[1].ToString() ?? "";
+                    transArq.root.CodigoCliente = line[2].ToString() ?? "";
+                    transArq.transferencia = line[3].FromJson<TransferenciaModel>();
+                    var campos = Convert.ToString(line[3]).Split(",");
+                    var dataindex = Array.FindIndex(campos, row => row.Contains("DataTransacao"));
+                    var data = campos[dataindex].ToString().Replace("\"", "").Replace("{", "").Replace("}", "")[(campos[dataindex].IndexOf(":") - 1)..];
+                    var dataFormat = data.Substring(0, data.IndexOf("T"));
+                    transArq.transferencia.DataTransacao = Convert.ToDateTime(dataFormat);
+                    var callbackindex = Array.FindIndex(campos, row => row.Contains("Callback"));
+                    if (callbackindex > 0 && (!campos[callbackindex].Contains(":null")))
+                    {
+                        var callback = campos[callbackindex].ToString().Replace("\"", "").Replace("{", "").Replace("}", "")[(campos[callbackindex].IndexOf(":") - 2)..];
+                        callback = callback[callback.IndexOf("http")..];
+                        transArq.callback.Url = callback;
 
                     }
+                    result.Add(transArq);
 
                 }
             }
