@@ -27,20 +27,20 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
             if(request.CDCliente == null)
                 request.CDCliente = 0;
             var param  = new { DT_INI = request.DTINI, DT_FIM = request.DTFIM, CDCRC = request.CDCliente };
-            return  Query<TedInfo>(SqlProc.BuscaTedsReprocessar_Proc, param);
+            return Query<TedInfo>(SqlProc.BuscaTedsReprocessar_Proc, param);
            
            
         }
 
         public async Task<IEnumerable<string>> BuscaUser(string Protocolo)
         {
-            var param = new { Protocolo };
+            var param = new { Protocolo = Protocolo };
             return Query<string>(SqlProc.BuscaUserReprocessarTed, param);
         }
 
         public async Task<IEnumerable<bool>> InsereTeds(TedInfo request)
         {
-            var param = new { request.Cd_Evento_Api, request.Gw_Evento_Api, request.Dc_Payload_Request };
+            var param = new { Cd_Evento_Api = request.Cd_Evento_Api, Gw_Evento_Api = request.Gw_Evento_Api, Dc_Payload_Request = request.Dc_Payload_Request };
             return Query<bool>(SqlProc.InsertTeds_Proc, param);
         }
     }

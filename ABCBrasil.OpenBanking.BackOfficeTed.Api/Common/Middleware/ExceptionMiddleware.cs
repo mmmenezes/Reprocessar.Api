@@ -12,6 +12,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Middleware
     public class ExceptionMiddleware
     {
         readonly RequestDelegate _next;
+        readonly ILogService _logService;
         readonly IApiIssuer _apiIssuer;
 
         public ExceptionMiddleware(RequestDelegate next,  IApiIssuer apiIssuer)

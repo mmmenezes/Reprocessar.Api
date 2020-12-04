@@ -15,6 +15,10 @@ using ABCBrasil.SegurancaApi.DSL.Libs.Service;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Polly;
+using Polly.Retry;
+using System;
+using System.Net.Http;
 
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
@@ -24,14 +28,14 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.IoC
         public static IServiceCollection AddDependencies(this IServiceCollection builder, IConfiguration configuration)
         {
             builder
-                .AddServices()
+                .AddServices(configuration)
                 .AddRepository()
                 .AddComponents();
 
             return builder;
         }
 
-        static IServiceCollection AddServices(this IServiceCollection builder)
+        static IServiceCollection AddServices(this IServiceCollection builder, IConfiguration configuration)
         {
             builder.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             builder.AddSingleton<IApiIssuer, ApiIssuer>();
