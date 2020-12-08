@@ -8,6 +8,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Models
     public class TransferenciaModel
     {
         public int? CodCliente { get; set; }
+        public string CodTedCliente { get; set; }
         public string AgenciaCliente { get; set; }
         public string ContaCliente { get; set; }
         [MaxLength(2, ErrorMessage = "Excedeu o limite máximo de caracteres para o campo!")]
