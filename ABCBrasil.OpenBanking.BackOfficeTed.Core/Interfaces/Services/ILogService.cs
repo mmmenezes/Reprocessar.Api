@@ -1,7 +1,9 @@
 ﻿
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Models.Componente;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services
 {
@@ -18,5 +20,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services
         void LogWarning(string message, Exception exception = null, object data = null);
 
         void LogError(string message, Exception exception = null, object data = null);
+
+        void SetNoticationHandle(INotificationHandler notificationHandler);
+        void SetTraceHandle(ITraceHandler traceHandler);
+        Task IncluirLog(LogModel model);
     }
 }

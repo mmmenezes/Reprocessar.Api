@@ -83,7 +83,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions
         static void SetSecurity(this SwaggerGenOptions options)
         {
             var configuration = AppConfiguration.GetConfiguration();
-                //ABCBrasil.IB.Corporate.Core.Dsl.Lib.Utils.AppConfiguration.GetConfiguration();
+                
             var key = configuration["ABCBrasilApiSettings:keyName"];
             var value = configuration["ABCBrasilApiSettings:keyValue"];
 

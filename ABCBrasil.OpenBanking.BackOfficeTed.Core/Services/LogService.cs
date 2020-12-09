@@ -1,12 +1,14 @@
 ﻿
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Models.Componente;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using Serilog.Context;
 using Serilog.Events;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 {
@@ -104,6 +106,21 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
         {
             var configuration = AppConfiguration.GetConfiguration();
             return configuration.GetValue<bool>("Serilog:IsNotEncrypt");
+        }
+
+        public void SetNoticationHandle(INotificationHandler notificationHandler)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetTraceHandle(ITraceHandler traceHandler)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task IncluirLog(LogModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }

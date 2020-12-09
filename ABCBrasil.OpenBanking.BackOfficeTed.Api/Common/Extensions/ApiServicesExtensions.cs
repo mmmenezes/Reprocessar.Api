@@ -4,7 +4,7 @@ using ABCBrasil.LogEventos.Lib.Config;
 using ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Middleware;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
 using ABCBrasil.OpenBanking.BackOfficeTed.IoC;
-using ABCBrasil.SegurancaApi.DSL.Libs.Middleware;
+
 using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;

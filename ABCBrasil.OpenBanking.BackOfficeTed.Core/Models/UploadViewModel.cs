@@ -10,5 +10,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Models
     {
         [Required]
         public IFormFile Teds { get; set; }
+        
     }
 }

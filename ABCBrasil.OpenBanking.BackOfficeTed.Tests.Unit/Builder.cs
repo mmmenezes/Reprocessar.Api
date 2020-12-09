@@ -1,4 +1,6 @@
 ﻿using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Models;
+using ABCBrasil.OpenBanking.BackOfficeTed.Core.Models.Repository;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.ViewModels.Arguments.Cip;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.ViewModels.Arguments.Comprovante;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.ViewModels.Arguments.Pagamento;
@@ -40,7 +42,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Tests.Unit
         {
             internal static SituacaoPagamentoProtocoloRequest BuildConsultaProtocoloPagamento()
             {
-                return new SituacaoPagamentoProtocoloRequest() { protocolo = "24691827300000069000001112502108300284080233"  };
+                return new SituacaoPagamentoProtocoloRequest() { protocolo = "24691827300000069000001112502108300284080233" };
             }
             internal static SituacaoPagamentoProtocoloRequest BuildConsultaProtocoloPagamentoDefault()
             {
@@ -65,16 +67,20 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Tests.Unit
         {
             internal static string buildComprovante()
             {
-                return "cbad3766-0ecc-49f2-b14a-5112262addf1" ;
+                return "cbad3766-0ecc-49f2-b14a-5112262addf1";
             }
-            //internal static ConsultaCipRequest BuildConsultaCipDefault()
-            //{
-            //    return new ConsultaCipRequest
-            //    {
-            //        codigoCliente = default,
-            //        codigoPagamento = default
-            //    };
-            //}
+
         }
+
+        internal static BuscaTedRequest Reprocessar64Builder()
+        {
+            return new BuscaTedRequest { DTINI = Convert.ToDateTime("2020-12-01"), DTFIM = Convert.ToDateTime("2020-12-20"), CDCliente = 45 };
+        }
+
+        //internal static UploadViewModel ReprocessarArquivoBuilder()
+        //{
+        //    return new UploadViewModel { Teds = Teds.csv };
+        //}
     }
+    
 }

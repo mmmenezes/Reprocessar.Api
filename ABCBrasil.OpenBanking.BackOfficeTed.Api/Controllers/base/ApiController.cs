@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
+
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
 {
@@ -56,6 +56,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
 
             return Response(apiResult, httpStatusCode);
         }
+
+
+
         /// <summary>
         /// Response:Metodo padrão para o Retorno ao Cliente.
         /// </summary>

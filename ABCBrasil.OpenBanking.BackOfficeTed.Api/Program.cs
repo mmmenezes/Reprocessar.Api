@@ -20,7 +20,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api
                     webBuilder.UseStartup<Startup>();
                     webBuilder.UseSerilogSetup<Program>();
                     webBuilder.UseIISIntegration();
-                    //webBuilder.UseKestrel();
+                    webBuilder.UseKestrel();
                 });
     }
 #pragma warning restore CS1591
