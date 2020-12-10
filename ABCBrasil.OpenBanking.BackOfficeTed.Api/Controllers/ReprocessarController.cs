@@ -99,7 +99,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
         {
             AddTrace("Solicitação do endpoint [ReprocessaTed].");
             var result = default(ReProcessaTed);
-            if (file == null)
+            try
+            {
+                if (file == null)
             {
                 base.AddNotification(Issues.ci2011, "Arquivo não encontrado.", NotificationType.Error);
                 return Response("", HttpStatusCode.BadRequest);
@@ -109,8 +111,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
 
             result = _tedService.ProcessaArquivoTed(arquivo);
 
-            try
-            {
+           
                 return Response(result, HttpStatusCode.OK);
             }
             catch (Exception ex)

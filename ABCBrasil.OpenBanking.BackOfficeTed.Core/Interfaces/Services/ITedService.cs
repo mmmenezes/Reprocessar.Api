@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Models;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Models.Repository;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.ViewModels.Arguments.ReProcessaTed;
