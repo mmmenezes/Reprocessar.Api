@@ -62,41 +62,32 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Tests.Unit.Controllers
             requestResult.StatusCode.Should().Equals(StatusCodes.Status200OK);
         }
 
-       
-        //[Fact(DisplayName = "ReprocessarControllerTests CSV - #01 - CENÁRIO - BADREQUEST ")]
-        //[Trait("Controller - Get Payload Response Ok", "Fail")]
-        
-        //public async Task GetBadRequestCSV()
-        //{
-        //    // arrange
-        //    var tedInfo = new IEnumerable<TedInfo>();
-        //    { Cd_Evento_Api = "teste", Cd_Crc = 45, Dc_Payload_Request = "asdasddads", Gw_Evento_Api = "5", StatusCodes = true };
-        //    var repo = new BuscaTedsResponse {Teds = tedInfo, CSVByte}
-        //    _container.Resolve<Mock<ITedService>>()
-        //      .Setup(x => x.BuscaTeds(It.IsAny<BuscaTedRequest>())
-              
-        //      ).Returns();
-           
-        //    //act
-        //    var actionResult = await controller.TedsCSV(Builder.Reprocessar64Builder().DTFIM, Builder.Reprocessar64Builder().DTINI, Builder.Reprocessar64Builder().CDCliente ?? 0);
-           
-        //    //assert
 
-        //    var requestResult = actionResult.Should().BeOfType<FileContentResult>().Subject;
-        //    requestResult.Should().NotBeNull();
-        //    requestResult.FileDownloadName = "Teds.csv";
-        //    requestResult.ContentType.Should().Equals(StatusCodes.Status400BadRequest);
+        [Fact(DisplayName = "ReprocessarControllerTests CSV - #01 - CENÁRIO - BADREQUEST ")]
+        [Trait("Controller - Get Payload Response Ok", "Fail")]
+
+        public async Task GetBadRequestCSV()
+        {
+
+            // arrange
+            _container.Resolve<Mock<ITedService>>()
+               .Setup(x => x.BuscaTeds(It.IsAny<BuscaTedRequest>()))
+               .Throws(new Exception());
+            //act
+            var actionResult = await controller.TedsCSV(Builder.Reprocessar64Builder().DTFIM, Builder.Reprocessar64Builder().DTINI, Builder.Reprocessar64Builder().CDCliente ?? 0);
+            //assert
+
+            actionResult.Should().BeNull();
 
 
-        //}
+        }
         [Fact(DisplayName = "CallbackCoreControllerTests CSV- #02 - CENÁRIO - SUCCESS")]
         [Trait("Controller - Get Payload Response Ok", "SUCCESS")]
         public async Task GetCSV()
         {
             // arrange
             _container.Resolve<Mock<ITedService>>()
-               .Setup(x => x.BuscaTeds(It.IsAny<BuscaTedRequest>()))
-               .Throws(new Exception());
+               .Setup(x => x.BuscaTeds(It.IsAny<BuscaTedRequest>()));
             //act
             var actionResult = await controller.TedsCSV(Builder.Reprocessar64Builder().DTFIM, Builder.Reprocessar64Builder().DTINI, Builder.Reprocessar64Builder().CDCliente ?? 0);
             //assert
