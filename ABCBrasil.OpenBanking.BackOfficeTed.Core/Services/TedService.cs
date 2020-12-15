@@ -11,11 +11,10 @@ using System.Text.Json;
 using System.IO;
 using Csv;
 using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.ViewModels.Arguments.ReProcessaTed;
-using System.Web.Helpers;
+
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
 {
@@ -88,7 +87,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             try
             {
                 AddTrace("Processa ted ", SelectedCSV);
-                List<TransferenciaModel> transferencias = new List<TransferenciaModel>();
+               
                 int i = 1;
 
                 foreach (var item in SelectedCSV)
@@ -124,9 +123,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
                         }
 
                         var processaAtualizaEnvio = _tedRepository.AtualizaEnvio(item.root.Codigo).Result;
-                        if (processaTedretorno.Count() != 0)
+                        if (processaAtualizaEnvio.Count() != 0)
                         {
-                            AddTrace($"Falha no Insere Teds. Codigo ted: {ted}", processaTedretorno);
+                            AddTrace($"Falha no Insere Teds. Codigo ted: {ted}", processaAtualizaEnvio);
                         }
                         ted.Status = true;
                     }

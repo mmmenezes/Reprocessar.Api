@@ -33,7 +33,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Tests.Unit.Services
             Builder.ArrangeServiceIssuer(_container, Issues.se3045);
             Mock<IEventoRepository> mockEvento = new Mock<IEventoRepository>();
             Mock<IIBRepository> mockRepo = new Mock<IIBRepository>();
-            Mock<ITedService> mockApi = new Mock<ITedService>();
             Mock<IApiIssuer> mockIssuer = new Mock<IApiIssuer>();
             Mock<IMapper> mockIMapper = new Mock<IMapper>();
            
@@ -58,7 +57,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Tests.Unit.Services
             Builder.ArrangeServiceIssuer(_container, Issues.se3045);
             Mock<IEventoRepository> mockEvento = new Mock<IEventoRepository>();
             Mock<IIBRepository> mockRepo = new Mock<IIBRepository>();
-            Mock<ITedService> mockApi = new Mock<ITedService>();
             Mock<IApiIssuer> mockIssuer = new Mock<IApiIssuer>();
             Mock<IMapper> mockIMapper = new Mock<IMapper>();
             var fileMock = new Mock<IFormFile>();
@@ -82,8 +80,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Tests.Unit.Services
             sut = new UploadViewModel { Teds = file };
 
 
-            mockRepo.Setup(m => m.ProcessaTed(It.IsAny<TransferenciaInclui>())).Throws(new Exception()); ;
-            _container.Resolve<Mock<ITedService>>().Setup(x => x.ProcessaArquivo(It.IsAny<UploadViewModel>())).Throws(new Exception()); ;
+            mockRepo.Setup(m => m.ProcessaTed(It.IsAny<TransferenciaInclui>())).Throws(new Exception()); 
+            _container.Resolve<Mock<ITedService>>().Setup(x => x.ProcessaArquivo(It.IsAny<UploadViewModel>())).Throws(new Exception()); 
             // Act
             _service = new TedService(mockEvento.Object, mockRepo.Object, mockIMapper.Object, mockIssuer.Object);
             var actionResult = _service.ProcessaArquivo(sut);
@@ -106,7 +104,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Tests.Unit.Services
             Mock<ITedService> mockApi = new Mock<ITedService>();
             Mock<IApiIssuer> mockIssuer = new Mock<IApiIssuer>();
             Mock<IMapper> mockIMapper = new Mock<IMapper>();
-            var fileMock = new Mock<IFormFile>();
+      
 
 
 
@@ -133,7 +131,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Tests.Unit.Services
             Mock<ITedService> mockApi = new Mock<ITedService>();
             Mock<IApiIssuer> mockIssuer = new Mock<IApiIssuer>();
             Mock<IMapper> mockIMapper = new Mock<IMapper>();
-            var fileMock = new Mock<IFormFile>();
+        
 
 
 

@@ -3,9 +3,7 @@ using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Repository;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Models;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Models.Repository;
-using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
@@ -38,9 +36,9 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Infra.Repository
             return Query<string>(SqlProc.BuscaUserReprocessarTed, param);
         }
 
-        public async Task<IEnumerable<bool>> InsereTeds(TedInfo request)
+        public async Task<IEnumerable<bool>> InsereTeds(TedInfo ted)
         {
-            var param = new { Cd_Evento_Api = request.Cd_Evento_Api, Gw_Evento_Api = request.Gw_Evento_Api, Dc_Payload_Request = request.Dc_Payload_Request };
+            var param = new { Cd_Evento_Api = ted.Cd_Evento_Api, Gw_Evento_Api = ted.Gw_Evento_Api, Dc_Payload_Request = ted.Dc_Payload_Request };
             return Query<bool>(SqlProc.InsertTeds_Proc, param);
         }
     }

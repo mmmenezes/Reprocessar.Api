@@ -35,7 +35,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Common.Extensions
                 config.TagActionsBy(api => api.GroupBySwaggerGroupAttribute());
                 config.SetXmlDocumentation();
                 config.SetSecurity();
-                config.SetSecurityAnitCsrf();
             });
             services.AddSwaggerGenNewtonsoftSupport();
         }

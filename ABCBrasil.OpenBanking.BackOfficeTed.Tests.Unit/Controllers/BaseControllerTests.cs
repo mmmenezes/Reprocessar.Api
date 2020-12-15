@@ -24,7 +24,7 @@ namespace ABCBrasil.OpenBanking.Pagamento.Tests.Unit.Controllers
 
         public BaseControllerTests()
         {
-            //_correlationId = Guid.NewGuid().ToString();
+          
             _registroEventoService = new Mock<IRegistroEventoService>();
             _issuer = new Mock<IApiIssuer>();
             _notificationHandler = new Mock<INotificationHandler>();

@@ -37,7 +37,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Common
 
             try
             {
-               // _ = new PaymentCodeExtractorService().Make(codigoPagamento);
+               
                 return true;
             }
             catch
@@ -52,8 +52,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Common
 
             try
             {
-                //var codigo = new PaymentCodeExtractorService().Make(codigoPagamento);
-                //return !codigo.BarCode.StartsWith("8");
+                
                 return false;
             }
             catch
@@ -64,23 +63,13 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Common
         }
         public static bool ValidaValorTriCon(IncluirPagamentoRequest pagamento)
         {
-            //try
-            //{
-            //    //var dadosPagto = new PaymentCodeExtractorService().Make(pagamento.CodigoPagamento);
-
-            //    if (dadosPagto.Value != pagamento.ValorPagamento)
-            //        return true;
-            //}
-            //catch (PaymentBarCodeException)
-            //{
-            //    return false;
-            //}
+           
             return false;
         }
 
         public static bool IsGuid(this string value)
         {
-            Guid noNeed = Guid.Empty;
+            Guid noNeed;
             return Guid.TryParse(value, out noNeed);
         }
         public static class Configuration

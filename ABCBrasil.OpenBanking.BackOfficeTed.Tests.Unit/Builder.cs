@@ -1,8 +1,6 @@
 ﻿using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;
-using ABCBrasil.OpenBanking.BackOfficeTed.Core.Models;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Models.Repository;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.ViewModels.Arguments.Cip;
-using ABCBrasil.OpenBanking.BackOfficeTed.Core.ViewModels.Arguments.Comprovante;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.ViewModels.Arguments.Pagamento;
 using Castle.Windsor;
 using Moq;
@@ -77,10 +75,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Tests.Unit
             return new BuscaTedRequest { DTINI = Convert.ToDateTime("2020-12-01"), DTFIM = Convert.ToDateTime("2020-12-20"), CDCliente = 45 };
         }
 
-        //internal static UploadViewModel ReprocessarArquivoBuilder()
-        //{
-        //    return new UploadViewModel { Teds = Teds.csv };
-        //}
+       
     }
     
 }

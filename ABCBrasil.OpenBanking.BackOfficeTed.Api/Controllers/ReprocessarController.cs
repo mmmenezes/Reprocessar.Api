@@ -57,7 +57,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
             }
             finally
             {
-                //await base.IncluirLog(teds.ToString()??"");
                 AddTrace("Finalização do endpoint BuscaTeds.");
             }
 
@@ -87,7 +86,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
             }
             finally
             {
-                //await base.IncluirLog(teds.ToString());
                 AddTrace("Finalização do endpoint BuscaTeds.");
             }
 
@@ -110,8 +108,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
             var arquivo = _tedService.ProcessaArquivo(file);
 
             result = _tedService.ProcessaArquivoTed(arquivo);
-
-           
                 return Response(result, HttpStatusCode.OK);
             }
             catch (Exception ex)
@@ -121,11 +117,8 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Api.Controllers
             }
             finally
             {
-                //await base.IncluirLog(arquivo.ToString());
                 AddTrace("Finalização do endpoint PopulaTabela.");
             }
-
-           
         }
     }
 }

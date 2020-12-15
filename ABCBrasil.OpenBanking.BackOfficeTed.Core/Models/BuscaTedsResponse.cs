@@ -1,4 +1,4 @@
-﻿using System;
+﻿
 using System.Collections.Generic;
 
 namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Models

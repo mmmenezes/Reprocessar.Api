@@ -3,7 +3,6 @@ using ABCBrasil.OpenBanking.BackOfficeTed.Core.Common;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Interfaces.Services;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Issuer;
 using ABCBrasil.OpenBanking.BackOfficeTed.Core.Services;
-using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;

@@ -7,7 +7,7 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Tests.Unit
 {
     class AutoMoqServiceResolver : ISubDependencyResolver
     {
-        private IKernel kernel;
+        private readonly IKernel kernel;
 
         public AutoMoqServiceResolver(IKernel kernel)
         {

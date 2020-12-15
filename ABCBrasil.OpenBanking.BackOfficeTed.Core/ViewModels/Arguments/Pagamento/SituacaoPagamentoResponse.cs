@@ -6,7 +6,6 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.ViewModels.Arguments.Pagament
     public class SituacaoPagamentoResponse
     { 
         public Guid Protocolo { get; set; }
-        //public string Arquivo { get; set; }
         public string CodigoBarras { get; set; }
         public DateTime? DataPagamento { get; set; }
         public string IdentificacaoPagamento { get; set; }

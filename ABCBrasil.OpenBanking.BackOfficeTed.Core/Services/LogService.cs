@@ -93,11 +93,10 @@ namespace ABCBrasil.OpenBanking.BackOfficeTed.Core.Services
             var key = CorrelationId;
             if (_isNotEncrypt)
             {
-                try
-                {
+                
+                
                     result = ABCBrasil.Core.Seguranca.CryptoLegado.Encrypt(result, key);
-                }
-                catch { }
+               
             }
             return result;
         }
